@@ -28,9 +28,9 @@ namespace player.Client
 
         }
 
-        static public void SetShoes()
+        static public void SetShoes(int id, int variation)
         {
-            SetPedComponentVariation(PlayerPedId(), 6, 16, 0, 0);
+            SetPedComponentVariation(PlayerPedId(), 6, id, variation, 0);
         }
 
     }

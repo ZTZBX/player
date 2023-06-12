@@ -2,7 +2,7 @@ fx_version 'bodacious'
 game 'gta5'
 
 files {
-    'Client/*.dll',
+    'Newtonsoft.Json.dll',
 }
 
 client_script 'Client/*.net.dll'
