@@ -15,6 +15,7 @@ namespace player.Client
         {
             EventHandlers["onClientResourceStart"] += new Action<string>(OnClientResourceStart);
             EventHandlers["updateDomainClothes"] += new Action<string>(UpdateDomainClothes);
+            EventHandlers["updateClothesNamesToId"] += new Action<string>(UpdateClothesNamesToId);
         }
 
         private void OnClientResourceStart(string resourceName)
@@ -24,13 +25,22 @@ namespace player.Client
             PlayerDie.setEvent["resetSkin"] = new Action(LoadDefaultSkin);
         }
 
+        private void UpdateClothesNamesToId(string items)
+        {
+            if (items != null && items.Length > 0)
+            {
+                Debug.WriteLine(items);
+                Clothes.clothesNamesToIds = JsonConvert.DeserializeObject<Dictionary<string, string>>(items);
+            }
+        }
+
         private void UpdateDomainClothes(string items)
         {
             if (items != null && items.Length > 0)
             {
 
-                Debug.WriteLine(items);
                 Dictionary<string, string> r = JsonConvert.DeserializeObject<Dictionary<string, string>>(items);
+
 
                 if (r["6"] != null)
                 {
@@ -49,6 +59,7 @@ namespace player.Client
                 if (Exports["core-ztzbx"].playerToken() != null)
                 {
                     TriggerServerEvent("playerClothesOnBody", Exports["core-ztzbx"].playerToken());
+                    TriggerServerEvent("updateClothesNamesToIdInClient", Exports["core-ztzbx"].playerToken());
                     break;
                 }
             }
@@ -58,7 +69,7 @@ namespace player.Client
         {
             while (true)
             {
-                await Delay(100);
+                await Delay(0);
                 if (Clothes.itemsLoaded)
                 {
                     break;

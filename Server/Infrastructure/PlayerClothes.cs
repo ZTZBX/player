@@ -14,6 +14,31 @@ namespace player.Server
 
         }
 
+        public void SetPlayerClothes([FromSource] Player user, string token, string bodyPart, string item)
+        {
+            string query;
+            string usernameQuery = $"SELECT username from players where token='{token}'";
+            dynamic username = Exports["fivem-mysql"].raw(usernameQuery);
+
+            string queryItemsOnBody = $"select idbodypart, name from itemsoncharters where username='{username[0][0]}' and idbodypart='{bodyPart}'";
+            dynamic resultQIOnP = Exports["fivem-mysql"].raw(queryItemsOnBody);
+            if (resultQIOnP.Count > 0)
+            {
+                query = $"UPDATE `itemsoncharters` SET `name` = '{item}' WHERE `itemsoncharters`.`username` = '{username[0][0]}' AND `itemsoncharters`.`name` = '{resultQIOnP[0][0]}';";
+                Exports["fivem-mysql"].raw(query);
+
+                TriggerClientEvent(user, "addItemToInventory", resultQIOnP[0][0]);
+                TriggerClientEvent(user, "removeItemToInventory", item);
+                return;
+            }
+
+
+            TriggerClientEvent(user, "removeItemToInventory", item);
+            // this if item item is not equiped
+            query = $"INSERT INTO `itemsoncharters` (`username`, `idbodypart`, `name`) VALUES ('{username[0][0]}', '{bodyPart}', '{item}');";
+            Exports["fivem-mysql"].raw(query);
+        }
+
         public Dictionary<string, string> ClothesIds()
         {
 
