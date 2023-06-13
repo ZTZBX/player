@@ -13,19 +13,25 @@ namespace player.Client
         {
         }
 
-        static public void SetBody()
+        static public void SetBody(int id_undershorit, int id_torso)
         {
-        }
+            if (id_torso == 15 && id_undershorit == 15)
+            {
+                SetPedComponentVariation(PlayerPedId(), 3, 16, 0, 0);
+            }
+            
+            SetPedComponentVariation(PlayerPedId(), 11, id_torso, 0, 0);
+            SetPedComponentVariation(PlayerPedId(), 8, id_undershorit, 0, 0);
+            }
 
         static  public void SetGloves()
         {
-
             
         }
 
-        static public void SetPants()
+        static public void SetPants(int id, int variation)
         {
-
+            SetPedComponentVariation(PlayerPedId(), 4, id, variation, 0);
         }
 
         static public void SetShoes(int id, int variation)

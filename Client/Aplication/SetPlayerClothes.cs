@@ -29,7 +29,6 @@ namespace player.Client
         {
             if (items != null && items.Length > 0)
             {
-                Debug.WriteLine(items);
                 Clothes.clothesNamesToIds = JsonConvert.DeserializeObject<Dictionary<string, string>>(items);
             }
         }
@@ -86,13 +85,16 @@ namespace player.Client
             }
 
             SetPlayerModel(PlayerId(), model);
-            SetModelAsNoLongerNeeded(model);
-            SetPedDefaultComponentVariation(PlayerPedId());
 
-            SetClothes.SetBody();
+            SetClothes.SetBody(Clothes.Undershirt, Clothes.Torso);
             SetClothes.SetGloves();
-            SetClothes.SetPants();
+
+            Debug.WriteLine(Clothes.Pants.ToString());
+            SetClothes.SetPants(Clothes.Pants, 0);
+
+            Debug.WriteLine(Clothes.Shoes.ToString());
             SetClothes.SetShoes(Clothes.Shoes, 0);
+
         }
 
     }
