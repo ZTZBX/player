@@ -39,5 +39,10 @@ namespace player.Client
             SetPedComponentVariation(PlayerPedId(), 6, id, variation, 0);
         }
 
+        static public void OnPedSetShoes(int ped, int id, int variation)
+        {
+            SetPedComponentVariation(ped, 6, id, variation, 0);
+        }
+
     }
 }

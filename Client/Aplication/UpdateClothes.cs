@@ -11,28 +11,17 @@ namespace player.Client
     {
         public UpdateClothes()
         {
-            Exports.Add("updateShoes", new Action<string>(UpdateShoes)); 
-            EventHandlers["addItemToInventory"] += new Action<string>(AddItemToInventory);
-            EventHandlers["removeItemToInventory"] += new Action<string>(RemoveItemToInventory);
-        }
-        private void AddItemToInventory(string item)
-        {
-            Exports["inventory"].addItemInventory(item, 1);
-        }
-
-        private void RemoveItemToInventory(string item)
-        {
-            Exports["inventory"].addItemInventory(item, -1);
+            Exports.Add("updateShoes", new Action<string, int>(UpdateShoes));
         }
 
         static public void UpdateBody()
         {
         }
 
-        static  public void UpdateGloves()
+        static public void UpdateGloves()
         {
 
-            
+
         }
 
         static public void UpdatePants()
@@ -40,10 +29,14 @@ namespace player.Client
 
         }
 
-        static public void UpdateShoes(string name)
+        static public void UpdateShoes(string name, int ped)
         {
-            Clothes.Shoes = Int32.Parse(Clothes.clothesNamesToIds[name]);
-            SetClothes.SetShoes(Clothes.Shoes, 0);
+            if (Items.itemsTypes["clothing-shoes"].Contains(name))
+            {
+                Debug.WriteLine("dsfdsf");
+                Clothes.Shoes = Int32.Parse(Clothes.clothesNamesToIds[name]);
+                SetClothes.OnPedSetShoes(ped, Clothes.Shoes, 0);
+            }
 
         }
 

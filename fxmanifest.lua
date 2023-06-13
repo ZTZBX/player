@@ -15,8 +15,7 @@ description 'ztzbx player system'
 dependencies {
     "core-ztzbx",
     "fivem-mysql",
-    "notification",
-    "inventory"
+    "notification"
 }
 
 ui_pages {

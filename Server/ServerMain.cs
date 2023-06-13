@@ -8,6 +8,7 @@ namespace player.Server
     {
         public ServerMain()
         {
+            
         }
     }
 }

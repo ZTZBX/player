@@ -11,6 +11,8 @@ namespace player.Client
         static public bool itemsLoaded = false;
 
         public static Dictionary<string, string> clothesNamesToIds = new Dictionary<string, string>();
+
+        
         static public int Torso = 15;
         static public int Undershirt = 15;
         static public int Gloves = 0;

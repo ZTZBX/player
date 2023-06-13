@@ -16,6 +16,7 @@ namespace player.Client
             EventHandlers["onClientResourceStart"] += new Action<string>(OnClientResourceStart);
             EventHandlers["updateDomainClothes"] += new Action<string>(UpdateDomainClothes);
             EventHandlers["updateClothesNamesToId"] += new Action<string>(UpdateClothesNamesToId);
+            EventHandlers["updateItemsMetaClient"] += new Action<string>(UpdateItemsMetaClient);
         }
 
         private void OnClientResourceStart(string resourceName)
@@ -23,6 +24,15 @@ namespace player.Client
             LoadDefaultSkin();
             GetItemsClothes();
             PlayerDie.setEvent["resetSkin"] = new Action(LoadDefaultSkin);
+        }
+
+        private void UpdateItemsMetaClient(string items)
+        {
+            if (items != null && items.Length > 0)
+            {
+                Debug.WriteLine(items);
+                Items.itemsTypes = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(items);
+            }
         }
 
         private void UpdateClothesNamesToId(string items)
@@ -59,6 +69,7 @@ namespace player.Client
                 {
                     TriggerServerEvent("playerClothesOnBody", Exports["core-ztzbx"].playerToken());
                     TriggerServerEvent("updateClothesNamesToIdInClient", Exports["core-ztzbx"].playerToken());
+                    TriggerServerEvent("updateItemsMeta");
                     break;
                 }
             }
@@ -88,11 +99,7 @@ namespace player.Client
 
             SetClothes.SetBody(Clothes.Undershirt, Clothes.Torso);
             SetClothes.SetGloves();
-
-            Debug.WriteLine(Clothes.Pants.ToString());
             SetClothes.SetPants(Clothes.Pants, 0);
-
-            Debug.WriteLine(Clothes.Shoes.ToString());
             SetClothes.SetShoes(Clothes.Shoes, 0);
 
         }

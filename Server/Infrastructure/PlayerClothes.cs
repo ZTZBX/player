@@ -14,6 +14,7 @@ namespace player.Server
 
         }
 
+        
         public void SetPlayerClothes([FromSource] Player user, string token, string bodyPart, string item)
         {
             string query;
@@ -27,17 +28,17 @@ namespace player.Server
                 query = $"UPDATE `itemsoncharters` SET `name` = '{item}' WHERE `itemsoncharters`.`username` = '{username[0][0]}' AND `itemsoncharters`.`name` = '{resultQIOnP[0][0]}';";
                 Exports["fivem-mysql"].raw(query);
 
-                TriggerClientEvent(user, "addItemToInventory", resultQIOnP[0][0]);
-                TriggerClientEvent(user, "removeItemToInventory", item);
+                // TriggerClientEvent(user, "addItemToInventory", resultQIOnP[0][0]);
+                // TriggerClientEvent(user, "removeItemToInventory", item);
                 return;
             }
 
-
-            TriggerClientEvent(user, "removeItemToInventory", item);
+            // TriggerClientEvent(user, "removeItemToInventory", item);
             // this if item item is not equiped
             query = $"INSERT INTO `itemsoncharters` (`username`, `idbodypart`, `name`) VALUES ('{username[0][0]}', '{bodyPart}', '{item}');";
             Exports["fivem-mysql"].raw(query);
         }
+
 
         public Dictionary<string, string> ClothesIds()
         {
@@ -55,6 +56,7 @@ namespace player.Server
             return result;
         }
 
+
         public Dictionary<string, string> ItemsIdInGame()
         {
 
@@ -70,6 +72,7 @@ namespace player.Server
 
             return result;
         }
+
 
         public Dictionary<string, string> Get(string token)
         {
