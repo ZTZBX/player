@@ -101,6 +101,8 @@ namespace player.Client
             SetClothes.SetPants(Clothes.Pants, 0);
             SetClothes.SetShoes(Clothes.Shoes, 0);
 
+            Player.playerLoaded = true;
+
         }
 
     }

@@ -17,7 +17,8 @@ namespace player.Client
 
         private void OnClientResourceStart(string resourceName)
         {
-            CheckIfPlayerIsConfigured();
+            LoadPlayerStats();
+            OpenPlayerConfigMenu();
         }
 
         private void SetPlayerStats(bool configured, int hours, string gender)
@@ -26,13 +27,28 @@ namespace player.Client
             Player.hoursplayed = hours;
             Player.gender = gender;
 
-            if (!Player.configured) 
+            Player.playerStatsLoaded = true;
+        }
+
+
+        async private void OpenPlayerConfigMenu()
+        {
+            while (true)
             {
-                ConfigPlayer();
+                await Delay(100);
+                if (Player.playerStatsLoaded && Player.playerLoaded)
+                {
+                    if (!Player.configured)
+                    {
+                        ConfigPlayer();
+                    }
+
+                    break;
+                }
             }
         }
 
-        async private void CheckIfPlayerIsConfigured()
+        async private void LoadPlayerStats()
         {
             while (true)
             {

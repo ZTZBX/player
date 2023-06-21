@@ -13,5 +13,8 @@ namespace player.Client
         static public string gender = null;
         static public int temporalPedForConfig = -1;
 
+        static public bool playerLoaded = false;
+        static public bool playerStatsLoaded = false;
+
     }
 }

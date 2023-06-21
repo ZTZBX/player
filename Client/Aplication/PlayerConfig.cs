@@ -38,7 +38,7 @@ namespace player.Client
                 RenderScriptCams(true, true, 1000, true, false);
                 Player.temporalPedForConfig = playerClone;
             }
-
+            
             string jsonString = "{\"showIn\": true }";
             SendNuiMessage(jsonString);
             DisplayRadar(false);
