@@ -33,7 +33,6 @@ namespace player.Client
         {
             if (Items.itemsTypes["clothing-shoes"].Contains(name))
             {
-                Debug.WriteLine("dsfdsf");
                 Clothes.Shoes = Int32.Parse(Clothes.clothesNamesToIds[name]);
                 SetClothes.OnPedSetShoes(ped, Clothes.Shoes, 0);
             }

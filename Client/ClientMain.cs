@@ -9,6 +9,27 @@ namespace player.Client
     {
         public ClientMain()
         {
+            EventHandlers["onClientResourceStart"] += new Action<string>(OnClientResourceStart);
+        }
+
+
+        private void OnClientResourceStart(string resourceName)
+        {
+            DisableScroll();
+        }
+
+        async private void DisableScroll()
+        {
+            while (true)
+            {
+                await Delay(0);
+
+                if (IsControlJustPressed(0, 37))
+                {
+                    HideHudComponentThisFrame(19);
+                }
+            }
+
         }
 
     }

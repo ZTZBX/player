@@ -30,7 +30,6 @@ namespace player.Client
         {
             if (items != null && items.Length > 0)
             {
-                Debug.WriteLine(items);
                 Items.itemsTypes = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(items);
             }
         }

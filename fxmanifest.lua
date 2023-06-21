@@ -3,6 +3,9 @@ game 'gta5'
 
 files {
     'Newtonsoft.Json.dll',
+    'static/index.css',
+    'static/index.js',
+    'static/index.html',
 }
 
 client_script 'Client/*.net.dll'
