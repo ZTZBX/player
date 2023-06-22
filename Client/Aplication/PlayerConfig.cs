@@ -40,9 +40,13 @@ namespace player.Client
                 SetCamActive(cam_zoom, true);
                 RenderScriptCams(true, true, 1000, true, false);
                 Player.temporalPedForConfig = playerClone;
+                ChangeHeadCaracteristics.GenerateRandomFaceCharacteristics();
+                ChangeHeadCaracteristics.UpdatePlayerFace(Player.temporalPedForConfig);
             }
 
             string jsonString = "{\"showIn\": true }";
+            
+
             SendNuiMessage(jsonString);
             DisplayRadar(false);
             SetNuiFocus(true, true);

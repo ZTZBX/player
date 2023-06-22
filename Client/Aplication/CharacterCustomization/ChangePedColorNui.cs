@@ -29,6 +29,10 @@ namespace player.Client
             Debug.WriteLine(currentColor.ToString());
             SetPlayerClothes.SetPlayerBlackPerMan(Player.temporalPedForConfig, currentColor);
 
+            ChangeHeadCaracteristics.GenerateRandomFaceCharacteristics();
+            ChangeHeadCaracteristics.UpdatePlayerFace(Player.temporalPedForConfig);
+            Player.blackRange = currentColor;
+
             cb(new { data = "ok" });
         }
 

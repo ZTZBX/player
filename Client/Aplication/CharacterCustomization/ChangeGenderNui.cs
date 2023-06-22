@@ -33,20 +33,34 @@ namespace player.Client
                 int temporalPed;
                 Vector3 pedCoords = GetEntityCoords(Player.temporalPedForConfig, false);
 
+                Player.gender = currentGender;
+
                 if (currentGender == "F")
                 {
                     model = Clothes.modelFemale;
-                    temporalPed = CreatePed(0, model, pedCoords.X, pedCoords.Y, pedCoords.Z - (pedCoords.Z * 0.003865f), 150.0f, false, false);
+                    temporalPed = CreatePed(0, model, pedCoords.X, pedCoords.Y, pedCoords.Z, 150.0f, false, false);
                     SetPlayerClothes.ChangePlayerAparience(temporalPed, 16, 16, 7, 220, 16);
+                    ChangeHeadCaracteristics.GenerateRandomFaceCharacteristics();
+                    ChangeHeadCaracteristics.UpdatePlayerFace(temporalPed);
                 
                 }
                 else
                 {
                     model = Clothes.modelMale;
-                    temporalPed = CreatePed(0, model, pedCoords.X, pedCoords.Y, pedCoords.Z - (pedCoords.Z * 0.003865f), 150.0f, false, false);
+                    temporalPed = CreatePed(0, model, pedCoords.X, pedCoords.Y, pedCoords.Z, 150.0f, false, false);
                     SetPlayerClothes.ChangePlayerAparience(temporalPed, 245, 15, 15, 218, 15);
-                    
+                    SetPlayerClothes.SetPlayerBlackPerMan(temporalPed, Player.blackRange);
+                    ChangeHeadCaracteristics.GenerateRandomFaceCharacteristics();
+                    ChangeHeadCaracteristics.UpdatePlayerFace(temporalPed);
                 }
+
+            
+                Vector3 pedClone = GetEntityCoords(temporalPed, false);
+
+                int cam_zoom = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", pedClone.X - 0.3f, pedClone.Y - 1.0f, pedClone.Z + 0.5f, 0, 0, 0, GetGameplayCamFov(), true, 0);
+                ClearFocus();
+                SetCamActive(cam_zoom, true);
+                RenderScriptCams(true, true, 1000, true, false);
 
                 
                 DeletePed(ref Player.temporalPedForConfig);
@@ -56,6 +70,8 @@ namespace player.Client
                 SetEntityHeading(temporalPed, 150.0f);
 
                 Player.temporalPedForConfig = temporalPed;
+
+                
             }
 
             cb(new { data = "ok" });
