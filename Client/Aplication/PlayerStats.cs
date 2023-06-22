@@ -26,7 +26,6 @@ namespace player.Client
             Player.configured = configured;
             Player.hoursplayed = hours;
             Player.gender = gender;
-
             Player.playerStatsLoaded = true;
         }
 
@@ -35,7 +34,7 @@ namespace player.Client
         {
             while (true)
             {
-                await Delay(100);
+                await Delay(500);
                 if (Player.playerStatsLoaded && Player.playerLoaded)
                 {
                     if (!Player.configured)

@@ -21,9 +21,34 @@ namespace player.Client
 
         private void OnClientResourceStart(string resourceName)
         {
+            LoadModels();
             LoadDefaultSkin();
             GetItemsClothes();
             PlayerDie.setEvent["resetSkin"] = new Action(LoadDefaultSkin);
+        }
+
+        async private void LoadModels()
+        {
+
+            Clothes.modelFemale = (uint)GetHashKey("mp_f_freemode_01");
+            RequestModel(Clothes.modelFemale);
+
+            while (HasModelLoaded(Clothes.modelFemale) == false)
+            {
+                RequestModel(Clothes.modelFemale);
+                await Delay(0);
+            }
+
+            Clothes.modelMale = (uint)GetHashKey("mp_m_freemode_01");
+            RequestModel(Clothes.modelMale);
+
+            while (HasModelLoaded(Clothes.modelMale) == false)
+            {
+                RequestModel(Clothes.modelMale);
+                await Delay(0);
+            }
+
+            Clothes.modelsHasLoaded = true;
         }
 
         private void UpdateItemsMetaClient(string items)
@@ -74,6 +99,48 @@ namespace player.Client
             }
         }
 
+        public static void ChangePlayerGender(int player, string gender)
+        {
+            if (gender == "M" || gender == null)
+            {
+                SetPlayerModel(player, Clothes.modelMale);
+            }
+
+            if (gender == "F")
+            {
+                SetPlayerModel(player, Clothes.modelFemale);
+            }
+
+        }
+
+        public static void ChangePlayerAparience(int ped, int pants, int torso, int undershirt, int shoes, int upperBody)
+        {
+            SetPedDefaultComponentVariation(ped);
+
+            SetClothes.SetBody(ped, undershirt, torso, upperBody);
+            SetClothes.SetGloves();
+            SetClothes.SetPants(ped, pants, 0);
+            SetClothes.SetShoes(ped, shoes, 0);
+        }
+
+        public static void SetPlayerBlackPerMan(int ped, float pers)
+        {
+            SetPedHeadBlendData(
+            ped,
+            44,
+            44,
+            2,
+            44,
+            44,
+            2,
+            pers,
+            0.5f,
+            pers,
+            true);
+        }
+
+
+
         async public void LoadDefaultSkin()
         {
             while (true)
@@ -85,21 +152,12 @@ namespace player.Client
                 }
             }
 
-            uint model = (uint)GetHashKey("mp_m_freemode_01");
-            RequestModel(model);
-
-            while (HasModelLoaded(model) == false)
+            ChangePlayerGender(PlayerId(), Player.gender);
+            ChangePlayerAparience(PlayerPedId(), Clothes.Pants, Clothes.Torso, Clothes.Undershirt, Clothes.Shoes, 15);
+            if (Player.gender == "M" || Player.gender == null)
             {
-                RequestModel(model);
-                await Delay(0);
+                SetPlayerBlackPerMan(PlayerPedId(), Player.blackRange);
             }
-
-            SetPlayerModel(PlayerId(), model);
-
-            SetClothes.SetBody(Clothes.Undershirt, Clothes.Torso);
-            SetClothes.SetGloves();
-            SetClothes.SetPants(Clothes.Pants, 0);
-            SetClothes.SetShoes(Clothes.Shoes, 0);
 
             Player.playerLoaded = true;
 

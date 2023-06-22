@@ -9,6 +9,10 @@ namespace player.Client
     static public class Clothes
     {
         static public bool itemsLoaded = false;
+        static public bool modelsHasLoaded = false;
+
+        static public uint modelFemale = 0; 
+        static public uint modelMale = 0; 
 
         public static Dictionary<string, string> clothesNamesToIds = new Dictionary<string, string>();
 

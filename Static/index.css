@@ -197,11 +197,66 @@ box-sha .color.active::before {
 }
 
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 1); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 1);
     border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
     border-radius: 2px;
-    -webkit-box-shadow: inset 0 0 6px rgba(255, 0, 0, 1); 
+    -webkit-box-shadow: inset 0 0 6px rgba(255, 0, 0, 1);
+}
+
+
+.genderSelector {
+    margin-left: 1rem;
+    color: #fff;
+}
+
+.genderSelector:hover {
+    color: rgba(255, 0, 0, 1);
+}
+
+.activeGender {
+    color: rgba(255, 0, 0, 1);
+}
+
+
+.skincolor1 {
+    background-color: #E1D1BA;
+}
+
+.skincolor2 {
+    background-color: #E8D3B7;
+}
+
+.skincolor3 {
+    background-color: #DAC5AB;
+}
+
+.skincolor4 {
+    background-color: #B6A083;
+}
+
+.skincolor5 {
+    background-color: #D5C0A3;
+}
+
+.skincolor6 {
+    background-color: #AA8065;
+}
+
+.skincolor7 {
+    background-color: #A27F65;
+}
+
+.skincolor8 {
+    background-color: #805547;
+}
+
+.skincolor9 {
+    background-color: #68482e;
+}
+
+.skincolor10 {
+    background-color: #492e14;
 }

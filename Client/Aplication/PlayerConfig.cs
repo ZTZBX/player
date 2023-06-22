@@ -13,6 +13,9 @@ namespace player.Client
         static public void ConfigNui(bool createNewPreviewPed)
         {
 
+            if (!Player.playerLoaded || Player.playerNuiOpened || !Player.playerStatsLoaded) { return; }
+
+
             if (createNewPreviewPed)
             {
                 Vector3 pedCoords = GetEntityCoords(PlayerPedId(), false);
@@ -38,11 +41,13 @@ namespace player.Client
                 RenderScriptCams(true, true, 1000, true, false);
                 Player.temporalPedForConfig = playerClone;
             }
-            
+
             string jsonString = "{\"showIn\": true }";
             SendNuiMessage(jsonString);
             DisplayRadar(false);
             SetNuiFocus(true, true);
+
+            Player.playerNuiOpened = true;
         }
 
         async public void ConfigPlayer()

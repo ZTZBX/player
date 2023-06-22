@@ -34,7 +34,7 @@ namespace player.Client
             if (Items.itemsTypes["clothing-shoes"].Contains(name))
             {
                 Clothes.Shoes = Int32.Parse(Clothes.clothesNamesToIds[name]);
-                SetClothes.OnPedSetShoes(ped, Clothes.Shoes, 0);
+                SetClothes.SetShoes(ped, Clothes.Shoes, 0);
             }
 
         }
