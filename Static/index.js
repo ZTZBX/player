@@ -88,6 +88,21 @@ function DesactiveAllColorsPickedSkin() {
     $("#pikc10").removeClass("active");
 }
 
+function DesactiveAllColorsPickedEye() {
+    $("#eyeblack").removeClass("active");
+    $("#eyeverylightbluegreen").removeClass("active");
+    $("#eyedarkblue").removeClass("active");
+    $("#eyebrown").removeClass("active");
+    $("#eyedarkerbrown").removeClass("active");
+    $("#eyeblue").removeClass("active");
+    $("#eyelightblue").removeClass("active");
+    $("#eyepink").removeClass("active");
+    $("#eyeyellow").removeClass("active");
+    $("#eyepurple").removeClass("active");
+    $("#eyedarkgreen").removeClass("active");
+    $("#eyelightbrown").removeClass("active");
+}
+
 
 function setCharacterHeadInfo(data) {
     var d = JSON.parse(data["data"]);
@@ -138,6 +153,23 @@ function ChangeColorSkin(color, clsass) {
     }).then(resp => resp.json()).then(success => setCharacterHeadInfo(success));
 
 }
+
+function UpdateCharacterEyeColor(event, type, id) {
+    DesactiveAllColorsPickedEye()
+    $("#" + id).addClass("active");
+    fetch(`https://player/set_character_eye`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+        }, body: JSON.stringify({
+            value: type,
+        })
+    }).then()
+        .catch(err => {
+        });
+}
+
+
 
 
 function UpdateCharacterFace(event, type) {

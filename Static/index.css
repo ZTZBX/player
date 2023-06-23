@@ -43,6 +43,7 @@ body {
     backface-visibility: hidden;
     color: #fff;
     padding: 1rem;
+    padding-bottom: 0;
     overflow-y: auto;
 }
 
@@ -259,4 +260,53 @@ box-sha .color.active::before {
 
 .skincolor10 {
     background-color: #492e14;
+}
+
+
+.lightgren {
+    background-color: rgb(136, 176, 137);
+}
+
+.verylightbluegreen {
+    background-color: #1ac99d;
+}
+
+.darkblue {
+    background-color: #42b4b0
+}
+
+.brown {
+    background-color: #10837f
+}
+
+.darkerbrown {
+    background-color: #2b1d14
+}
+
+.lightbrown {
+    background-color: #aaaaaa
+}
+
+.blue {
+    background-color: rgb(255, 157, 0)
+}
+
+.lightblue {
+    background-color: #add8e6
+}
+
+.pink {
+    background-color: rgb(255, 255, 255)
+}
+
+.yellow {
+    background-color: rgb(255, 0, 191)
+}
+
+.purple {
+    background-color: rgb(255, 255, 0)
+}
+
+.darkgreen {
+    background-color: #000000 
 }

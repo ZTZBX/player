@@ -158,6 +158,7 @@ namespace player.Client
             {
                 SetPlayerBlackPerMan(PlayerPedId(), Player.blackRange);
             }
+            SetPedEyeColor(PlayerPedId(), Player.eyes);
 
             Player.playerLoaded = true;
 
