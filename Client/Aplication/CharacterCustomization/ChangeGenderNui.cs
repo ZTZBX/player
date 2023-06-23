@@ -38,9 +38,6 @@ namespace player.Client
                     model = Clothes.modelFemale;
                     temporalPed = CreatePed(0, model, pedCoords.X, pedCoords.Y, pedCoords.Z, 150.0f, false, false);
                     SetPlayerClothes.ChangePlayerAparience(temporalPed, 16, 16, 7, 220, 16);
-                    ChangeHeadCaracteristics.GenerateRandomFaceCharacteristics();
-                    ChangeHeadCaracteristics.UpdatePlayerFace(temporalPed);
-                
                 }
                 else
                 {
@@ -48,9 +45,13 @@ namespace player.Client
                     temporalPed = CreatePed(0, model, pedCoords.X, pedCoords.Y, pedCoords.Z, 150.0f, false, false);
                     SetPlayerClothes.ChangePlayerAparience(temporalPed, 245, 15, 15, 218, 15);
                     SetPlayerClothes.SetPlayerBlackPerMan(temporalPed, Player.blackRange);
-                    ChangeHeadCaracteristics.GenerateRandomFaceCharacteristics();
-                    ChangeHeadCaracteristics.UpdatePlayerFace(temporalPed);
                 }
+
+                ChangeHeadCaracteristics.GenerateRandomFaceCharacteristics();
+                ChangeHeadCaracteristics.UpdatePlayerFace(temporalPed);
+                SetPedEyeColor(temporalPed, Player.eyes);
+                SetClothes.SetHair(temporalPed, Player.hair, 0);
+                
 
             
                 Vector3 pedClone = GetEntityCoords(temporalPed, false);
@@ -67,6 +68,8 @@ namespace player.Client
                 SetEntityInvincible(temporalPed, true);
                 SetEntityHeading(temporalPed, 150.0f);
                 Player.temporalPedForConfig = temporalPed; 
+
+
             }
 
             cb(new { data = "ok" });

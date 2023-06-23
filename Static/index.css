@@ -322,3 +322,16 @@ box-sha .color.active::before {
 .fox {
     background-color: #d7a550;
 }
+
+.hair {
+    border-radius: 2px;
+    border: 2px solid #fff;
+}
+
+.hair:hover {
+    border: 3px solid #eb0909;
+}
+
+.activehair {
+    border:  2px solid #092feb;
+}

@@ -1,7 +1,10 @@
 using System;
 using System.Threading.Tasks;
 using CitizenFX.Core;
+using System.Collections.Generic;
 using static CitizenFX.Core.Native.API;
+using System.Linq;
+
 
 // mp_m_freemode_01
 
@@ -16,8 +19,14 @@ namespace player.Client
             if (!Player.playerLoaded || Player.playerNuiOpened || !Player.playerStatsLoaded) { return; }
 
             Random rnd = new Random();
+            // random skin color
             Player.blackRange = (float)rnd.Next(1, 11) / 10.0f;
+            // random eyes
             Player.eyes = rnd.Next(0, 15);
+            // random hair
+            int randomHairIndex = rnd.Next(Hair.disponible.Count);
+            KeyValuePair<string, int> randomHairObject = Hair.disponible.ElementAt(randomHairIndex);
+            Player.hair = randomHairObject.Value;
 
             if (createNewPreviewPed)
             {
@@ -47,6 +56,7 @@ namespace player.Client
                 ChangeHeadCaracteristics.UpdatePlayerFace(Player.temporalPedForConfig);
                 SetPlayerClothes.SetPlayerBlackPerMan(Player.temporalPedForConfig, Player.blackRange);
                 SetPedEyeColor(Player.temporalPedForConfig, Player.eyes);
+                SetClothes.SetHair(Player.temporalPedForConfig, Player.hair, 0);
             }
 
             string jsonString = "{\"showIn\": true }";

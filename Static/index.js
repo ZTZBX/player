@@ -127,6 +127,15 @@ $(function () {
                 })
             }).then(resp => resp.json()).then(success => setCharacterHeadInfo(success));
 
+            fetch(`https://player/get_hair`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8',
+                },
+                body: JSON.stringify({
+                })
+            }).then(resp => resp.json()).then(success => setHair(success));
+
 
 
             document.getElementsByClassName("main")[0].style.display = "block";
@@ -224,6 +233,8 @@ function DesactiveAllColorsPickedEye() {
 }
 
 
+
+
 function setCharacterHeadInfo(data) {
     var d = JSON.parse(data["data"]);
     $("#NoseWidthThinWide").val(d.noseWidthThinWide)
@@ -247,6 +258,14 @@ function setCharacterHeadInfo(data) {
     $("#ChinHoleChinBum").val(d.chinHoleChinBum)
     $("#NeckThicknessThinThick").val(d.neckThicknessThinThick)
 }
+
+function setHair(data) {
+    DesactiveAllHairs();
+    var d = JSON.parse(data["data"]);
+    $("#" + d.hair.replace(".png", "")).addClass("activehair");
+}
+
+
 
 function ChangeColorSkin(color, clsass) {
     DesactiveAllColorsPickedSkin();
@@ -281,6 +300,17 @@ function ChangeColorSkin(color, clsass) {
         })
     }).then(resp => resp.json()).then(success => setCharacterEyeColor(success));
 
+    fetch(`https://player/get_hair`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify({
+        })
+    }).then(resp => resp.json()).then(success => setHair(success));
+
+
+
 }
 
 function UpdateCharacterEyeColor(event, type, id) {
@@ -298,7 +328,30 @@ function UpdateCharacterEyeColor(event, type, id) {
         });
 }
 
+function UpdateCharacterHair(event, type) {
+    DesactiveAllHairs();
+    $("#" + type.replace(".png", "")).addClass("activehair");
+    fetch(`https://player/set_character_hair`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+        }, body: JSON.stringify({
+            value: type,
+        })
+    }).then()
+        .catch(err => {
+        });
+}
 
+function DesactiveAllHairs() {
+    $("#Bold").removeClass("activehair");
+    $("#Afro").removeClass("activehair");
+    $("#BunHair").removeClass("activehair");
+    $("#Curly").removeClass("activehair");
+    $("#Dreds").removeClass("activehair");
+    $("#MaxPayne").removeClass("activehair");
+    $("#Scruffy").removeClass("activehair");
+}
 
 
 function UpdateCharacterFace(event, type) {

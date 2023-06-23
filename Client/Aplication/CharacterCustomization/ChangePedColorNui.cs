@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using CitizenFX.Core;
 using System.Collections.Generic;
-
+using System.Linq;
 using static CitizenFX.Core.Native.API;
 
 // mp_m_freemode_01
@@ -32,6 +32,11 @@ namespace player.Client
             Player.eyes = rnd.Next(0, 15);
             Player.blackRange = currentColor;
             SetPedEyeColor(Player.temporalPedForConfig, Player.eyes);
+
+            int randomHairIndex = rnd.Next(Hair.disponible.Count);
+            KeyValuePair<string, int> randomHairObject = Hair.disponible.ElementAt(randomHairIndex);
+            Player.hair = randomHairObject.Value;
+            SetClothes.SetHair(Player.temporalPedForConfig, Player.hair, 0);
 
             cb(new { data = "ok" });
         }

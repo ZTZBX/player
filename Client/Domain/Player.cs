@@ -38,9 +38,8 @@ namespace player.Client
         static public float chinBoneShapePointedSquare = 0.0f;
         static public float chinHoleChinBum = 0.0f;
         static public float neckThicknessThinThick = 0.0f;
-
         static public int eyes = 0;
-
+        static public int hair = 0;
 
     }
 }

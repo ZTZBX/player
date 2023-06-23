@@ -36,5 +36,10 @@ namespace player.Client
             SetPedComponentVariation(ped, 6, id, variation, 0);
         }
 
+        static public void SetHair(int ped, int id, int variation)
+        {
+            SetPedComponentVariation(ped, 2, id, variation, 0);
+        }
+
     }
 }

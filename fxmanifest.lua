@@ -6,6 +6,7 @@ files {
     'static/index.css',
     'static/index.js',
     'static/index.html',
+    'static/*.png'
 }
 
 client_script 'Client/*.net.dll'
