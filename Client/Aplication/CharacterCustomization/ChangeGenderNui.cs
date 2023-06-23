@@ -25,7 +25,7 @@ namespace player.Client
 
             string currentGender = gender.ToString();
 
-            if (currentGender == "F" || currentGender == "M")
+            if ((currentGender == "F" || currentGender == "M") && (Player.gender != currentGender))
             {
                 uint model;
                 int temporalPed;
