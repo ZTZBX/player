@@ -26,7 +26,7 @@
             SELECT YOUR GENDER
         </h5>
 
-        <div style="margin-top: 0.5rem;">
+        <div style="margin-top: 1rem;">
             <svg xmlns="http://www.w3.org/2000/svg" height="50px" class="genderSelector activeGender"
                 id="genderselectorM" fill="currentColor" viewBox="0 0 320 512">
                 <path
@@ -214,14 +214,12 @@
 
 
         <h5 style="text-align: left;margin-top: 3rem;">
-            CHOOSE YOUR HAIR
+            CHOOSE YOUR HEAD HAIR
         </h5>
 
         <div style="padding: 10px;">
-            <img src="./Bold.png" onclick="UpdateCharacterHair(this, 'Bold.png')" class="hair" id="Bold"
-                height="80px">
-            <img src="./Afro.png" onclick="UpdateCharacterHair(this, 'Afro.png')" class="hair" id="Afro"
-                height="80px">
+            <img src="./Bold.png" onclick="UpdateCharacterHair(this, 'Bold.png')" class="hair" id="Bold" height="80px">
+            <img src="./Afro.png" onclick="UpdateCharacterHair(this, 'Afro.png')" class="hair" id="Afro" height="80px">
             <img src="./BunHair.png" onclick="UpdateCharacterHair(this, 'BunHair.png')" class="hair" id="BunHair"
                 height="80px">
             <img src="./Curly.png" onclick="UpdateCharacterHair(this, 'Curly.png')" class="hair" id="Curly"
@@ -233,16 +231,82 @@
             <img src="./Scruffy.png" onclick="UpdateCharacterHair(this, 'Scruffy.png')" class="hair" id="Scruffy"
                 height="80px">
         </div>
+
+        <h5 style="text-align: left;margin-top: 2rem;">
+            CHOOSE A COLOR FOR YOUR HAIR
+        </h5>
+
+        <p style="text-align: left; margin-bottom: 0;margin-top: 1rem;">
+            Color Highlight
+        </p>
+
+        <input id="hightlight" onchange="UpdateHairColorHightlight(this)" type="range" class="range-slider" min="0" step="1" max="64" aria-describedby="Nose Twist" required>
+
         <div id="cp-background-color" class="color-picker">
-            <div class="color bg-primary"></div>
-            <div class="color bg-success"></div>
-            <div class="color bg-warning"></div>
-            <div class="color bg-danger"></div>
-            <div class="color bg-light"></div>
-            <div class="color bg-dark active"></div>
-            <div class="color bg-info"></div>
-            <div class="color bg-white"></div>
-            <div class="color bg-secondary"></div>
+            <div onclick="UpdateCharacterHairColor(this, '0ColorHair')"  id="0ColorHair" style="background-color:#1c1f21!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '1ColorHair')"  id="1ColorHair" style="background-color:#272a2c!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '2ColorHair')"  id="2ColorHair" style="background-color:#312e2c!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '3ColorHair')"  id="3ColorHair" style="background-color:#35261c!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '4ColorHair')"  id="4ColorHair" style="background-color:#4b321f!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '5ColorHair')"  id="5ColorHair" style="background-color:#5c3b24!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '6ColorHair')"  id="6ColorHair" style="background-color:#6d4c35!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '7ColorHair')"  id="7ColorHair" style="background-color:#6b503b!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '8ColorHair')"  id="8ColorHair" style="background-color:#765c45!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '9ColorHair')"  id="9ColorHair" style="background-color:#7f684e!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '10ColorHair')"  id="10ColorHair" style="background-color:#99815d!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '11ColorHair')"  id="11ColorHair" style="background-color:#a79369!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '12ColorHair')"  id="12ColorHair" style="background-color:#af9c70!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '13ColorHair')"  id="13ColorHair" style="background-color:#bba063!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '14ColorHair')"  id="14ColorHair" style="background-color:#d6b97b!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '15ColorHair')"  id="15ColorHair" style="background-color:#dac38e!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '16ColorHair')"  id="16ColorHair" style="background-color:#9f7f59!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '17ColorHair')"  id="17ColorHair" style="background-color:#845039!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '18ColorHair')"  id="18ColorHair" style="background-color:#682b1f!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '19ColorHair')"  id="19ColorHair" style="background-color:#61120c!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '20ColorHair')"  id="20ColorHair" style="background-color:#640f0a!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '21ColorHair')"  id="21ColorHair" style="background-color:#7c140f!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '22ColorHair')"  id="22ColorHair" style="background-color:#a02e19!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '23ColorHair')"  id="23ColorHair" style="background-color:#b64b28!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '24ColorHair')"  id="24ColorHair" style="background-color:#a2502f!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '25ColorHair')"  id="25ColorHair" style="background-color:#aa4e2b!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '26ColorHair')"  id="26ColorHair" style="background-color:#626262!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '27ColorHair')"  id="27ColorHair" style="background-color:#808080!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '28ColorHair')"  id="28ColorHair" style="background-color:#aaaaaa!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '29ColorHair')"  id="29ColorHair" style="background-color:#c5c5c5!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '30ColorHair')"  id="30ColorHair" style="background-color:#463955!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '31ColorHair')"  id="31ColorHair" style="background-color:#5a3f6b!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '32ColorHair')"  id="32ColorHair" style="background-color:#763c76!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '33ColorHair')"  id="33ColorHair" style="background-color:#ed74e3!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '34ColorHair')"  id="34ColorHair" style="background-color:#eb4b93!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '35ColorHair')"  id="35ColorHair" style="background-color:#f299bc!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '36ColorHair')"  id="36ColorHair" style="background-color:#04959e!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '37ColorHair')"  id="37ColorHair" style="background-color:#025f86!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '38ColorHair')"  id="38ColorHair" style="background-color:#023974!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '39ColorHair')"  id="39ColorHair" style="background-color:#3fa16a!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '40ColorHair')"  id="40ColorHair" style="background-color:#217c61!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '41ColorHair')"  id="41ColorHair" style="background-color:#185c55!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '42ColorHair')"  id="42ColorHair" style="background-color:#b6c034!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '43ColorHair')"  id="43ColorHair" style="background-color:#70a90b!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '44ColorHair')"  id="44ColorHair" style="background-color:#439d13!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '45ColorHair')"  id="45ColorHair" style="background-color:#dcb857!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '46ColorHair')"  id="46ColorHair" style="background-color:#e5b103!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '47ColorHair')"  id="47ColorHair" style="background-color:#e69102!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '48ColorHair')"  id="48ColorHair" style="background-color:#f28831!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '49ColorHair')"  id="49ColorHair" style="background-color:#fb8057!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '50ColorHair')"  id="50ColorHair" style="background-color:#e28b58!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '51ColorHair')"  id="51ColorHair" style="background-color:#d1593c!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '52ColorHair')"  id="52ColorHair" style="background-color:#ce3120!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '53ColorHair')"  id="53ColorHair" style="background-color:#ad0903!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '54ColorHair')"  id="54ColorHair" style="background-color:#880302!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '55ColorHair')"  id="55ColorHair" style="background-color:#1f1814!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '56ColorHair')"  id="56ColorHair" style="background-color:#291f19!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '57ColorHair')"  id="57ColorHair" style="background-color:#2e221b!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '58ColorHair')"  id="58ColorHair" style="background-color:#37291e!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '59ColorHair')"  id="59ColorHair" style="background-color:#2e2218!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '60ColorHair')"  id="60ColorHair" style="background-color:#231b15!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '61ColorHair')"  id="61ColorHair" style="background-color:#020202!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '62ColorHair')"  id="62ColorHair" style="background-color:#706c66!important;" class="color "></div>
+            <div onclick="UpdateCharacterHairColor(this, '63ColorHair')"  id="63ColorHair" style="background-color:#9d7a50!important;" class="color "></div>
         </div>
 
         <div style="text-align: center; margin-top: 1.4rem;position: sticky;bottom: 0;background-color: #1f2029;">

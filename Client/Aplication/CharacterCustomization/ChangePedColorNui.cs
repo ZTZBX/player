@@ -38,6 +38,11 @@ namespace player.Client
             Player.hair = randomHairObject.Value;
             SetClothes.SetHair(Player.temporalPedForConfig, Player.hair, 0);
 
+            Player.hairColor = rnd.Next(0, 64);
+            Player.hairHightLight = rnd.Next(0, 64);
+
+            SetPedHairColor(Player.temporalPedForConfig, Player.hairColor, Player.hairHightLight);
+
             cb(new { data = "ok" });
         }
 

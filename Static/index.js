@@ -94,11 +94,29 @@ function setCharacterEyeColor(data) {
 
 }
 
+function setHearColor(data) {
+    DesactiveAllHairColors();
+    var d = JSON.parse(data["data"]);
+    $("#hightlight").val(d.hightlight);
+    $("#" + d.color + "ColorHair").addClass("active");
+}
+
+
+
 
 $(function () {
     window.addEventListener('message', function (event) {
         var item = event.data;
         if (item.showIn == true) {
+
+            fetch(`https://player/get_player_hear_color`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8',
+                },
+                body: JSON.stringify({
+                })
+            }).then(resp => resp.json()).then(success => setHearColor(success));
 
             fetch(`https://player/get_player_skin_color`, {
                 method: 'POST',
@@ -309,7 +327,14 @@ function ChangeColorSkin(color, clsass) {
         })
     }).then(resp => resp.json()).then(success => setHair(success));
 
-
+    fetch(`https://player/get_player_hear_color`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify({
+        })
+    }).then(resp => resp.json()).then(success => setHearColor(success));
 
 }
 
@@ -343,6 +368,92 @@ function UpdateCharacterHair(event, type) {
         });
 }
 
+
+function DesactiveAllHairColors() {
+    $("#0ColorHair").removeClass("active");
+    $("#1ColorHair").removeClass("active");
+    $("#2ColorHair").removeClass("active");
+    $("#3ColorHair").removeClass("active");
+    $("#4ColorHair").removeClass("active");
+    $("#5ColorHair").removeClass("active");
+    $("#6ColorHair").removeClass("active");
+    $("#7ColorHair").removeClass("active");
+    $("#8ColorHair").removeClass("active");
+    $("#9ColorHair").removeClass("active");
+    $("#10ColorHair").removeClass("active");
+    $("#11ColorHair").removeClass("active");
+    $("#12ColorHair").removeClass("active");
+    $("#13ColorHair").removeClass("active");
+    $("#14ColorHair").removeClass("active");
+    $("#15ColorHair").removeClass("active");
+    $("#16ColorHair").removeClass("active");
+    $("#17ColorHair").removeClass("active");
+    $("#18ColorHair").removeClass("active");
+    $("#19ColorHair").removeClass("active");
+    $("#20ColorHair").removeClass("active");
+    $("#21ColorHair").removeClass("active");
+    $("#22ColorHair").removeClass("active");
+    $("#23ColorHair").removeClass("active");
+    $("#24ColorHair").removeClass("active");
+    $("#25ColorHair").removeClass("active");
+    $("#26ColorHair").removeClass("active");
+    $("#27ColorHair").removeClass("active");
+    $("#28ColorHair").removeClass("active");
+    $("#29ColorHair").removeClass("active");
+    $("#30ColorHair").removeClass("active");
+    $("#31ColorHair").removeClass("active");
+    $("#32ColorHair").removeClass("active");
+    $("#33ColorHair").removeClass("active");
+    $("#34ColorHair").removeClass("active");
+    $("#35ColorHair").removeClass("active");
+    $("#36ColorHair").removeClass("active");
+    $("#37ColorHair").removeClass("active");
+    $("#38ColorHair").removeClass("active");
+    $("#39ColorHair").removeClass("active");
+    $("#40ColorHair").removeClass("active");
+    $("#41ColorHair").removeClass("active");
+    $("#42ColorHair").removeClass("active");
+    $("#43ColorHair").removeClass("active");
+    $("#44ColorHair").removeClass("active");
+    $("#45ColorHair").removeClass("active");
+    $("#46ColorHair").removeClass("active");
+    $("#47ColorHair").removeClass("active");
+    $("#48ColorHair").removeClass("active");
+    $("#49ColorHair").removeClass("active");
+    $("#50ColorHair").removeClass("active");
+    $("#51ColorHair").removeClass("active");
+    $("#52ColorHair").removeClass("active");
+    $("#53ColorHair").removeClass("active");
+    $("#54ColorHair").removeClass("active");
+    $("#55ColorHair").removeClass("active");
+    $("#56ColorHair").removeClass("active");
+    $("#57ColorHair").removeClass("active");
+    $("#58ColorHair").removeClass("active");
+    $("#59ColorHair").removeClass("active");
+    $("#60ColorHair").removeClass("active");
+    $("#61ColorHair").removeClass("active");
+    $("#62ColorHair").removeClass("active");
+    $("#63ColorHair").removeClass("active");
+
+
+}
+
+function UpdateCharacterHairColor(event, type) {
+    DesactiveAllHairColors();
+    $("#" + type).addClass("active");
+
+    fetch(`https://player/set_player_hair_color`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+        }, body: JSON.stringify({
+            value: type.replace("ColorHair", ""),
+        })
+    }).then()
+        .catch(err => {
+        });
+}
+
 function DesactiveAllHairs() {
     $("#Bold").removeClass("activehair");
     $("#Afro").removeClass("activehair");
@@ -356,6 +467,19 @@ function DesactiveAllHairs() {
 
 function UpdateCharacterFace(event, type) {
     fetch(`https://player/` + type, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+        }, body: JSON.stringify({
+            value: event.value,
+        })
+    }).then()
+        .catch(err => {
+        });
+}
+
+function UpdateHairColorHightlight(event) {
+    fetch(`https://player/update_player_hightlight`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json; charset=UTF-8',

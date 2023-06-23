@@ -28,6 +28,10 @@ namespace player.Client
             KeyValuePair<string, int> randomHairObject = Hair.disponible.ElementAt(randomHairIndex);
             Player.hair = randomHairObject.Value;
 
+            // randor hair color
+            Player.hairColor = rnd.Next(0, 64);
+            Player.hairHightLight = rnd.Next(0, 64);
+
             if (createNewPreviewPed)
             {
                 Vector3 pedCoords = GetEntityCoords(PlayerPedId(), false);
@@ -57,6 +61,8 @@ namespace player.Client
                 SetPlayerClothes.SetPlayerBlackPerMan(Player.temporalPedForConfig, Player.blackRange);
                 SetPedEyeColor(Player.temporalPedForConfig, Player.eyes);
                 SetClothes.SetHair(Player.temporalPedForConfig, Player.hair, 0);
+                SetPedHairColor(Player.temporalPedForConfig, Player.hairColor, Player.hairHightLight);
+                
             }
 
             string jsonString = "{\"showIn\": true }";

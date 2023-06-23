@@ -40,6 +40,8 @@ namespace player.Client
         static public float neckThicknessThinThick = 0.0f;
         static public int eyes = 0;
         static public int hair = 0;
+        static public int hairColor = 0;
+        static public int hairHightLight = 0;
 
     }
 }
