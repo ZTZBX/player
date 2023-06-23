@@ -102,12 +102,25 @@ function setHearColor(data) {
 }
 
 
-
+function setEyesBrows(data) {
+    DesactiveAllEyeBrows();
+    var d = JSON.parse(data["data"]);
+    $("#" + d.eyesbrow + "EyesBrows").addClass("activehair");
+}
 
 $(function () {
     window.addEventListener('message', function (event) {
         var item = event.data;
         if (item.showIn == true) {
+
+            fetch(`https://player/get_eyebrows`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8',
+                },
+                body: JSON.stringify({
+                })
+            }).then(resp => resp.json()).then(success => setEyesBrows(success));
 
             fetch(`https://player/get_player_hear_color`, {
                 method: 'POST',
@@ -336,6 +349,16 @@ function ChangeColorSkin(color, clsass) {
         })
     }).then(resp => resp.json()).then(success => setHearColor(success));
 
+
+    fetch(`https://player/get_eyebrows`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify({
+        })
+    }).then(resp => resp.json()).then(success => setEyesBrows(success));
+
 }
 
 function UpdateCharacterEyeColor(event, type, id) {
@@ -368,6 +391,21 @@ function UpdateCharacterHair(event, type) {
         });
 }
 
+
+function UpdateEyesBrows(event, type) {
+    DesactiveAllEyeBrows();
+    $("#" + type + "EyesBrows").addClass("activehair");
+    fetch(`https://player/set_eyesbrows`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+        }, body: JSON.stringify({
+            value: type,
+        })
+    }).then()
+        .catch(err => {
+        });
+}
 
 function DesactiveAllHairColors() {
     $("#0ColorHair").removeClass("active");
@@ -462,6 +500,17 @@ function DesactiveAllHairs() {
     $("#Dreds").removeClass("activehair");
     $("#MaxPayne").removeClass("activehair");
     $("#Scruffy").removeClass("activehair");
+}
+
+function DesactiveAllEyeBrows() {
+    $("#0EyesBrows").removeClass("activehair");
+    $("#1EyesBrows").removeClass("activehair");
+    $("#2EyesBrows").removeClass("activehair");
+    $("#3EyesBrows").removeClass("activehair");
+    $("#4EyesBrows").removeClass("activehair");
+    $("#5EyesBrows").removeClass("activehair");
+    $("#6EyesBrows").removeClass("activehair");
+    $("#7EyesBrows").removeClass("activehair");
 }
 
 

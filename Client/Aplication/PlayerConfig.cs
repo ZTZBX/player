@@ -28,9 +28,12 @@ namespace player.Client
             KeyValuePair<string, int> randomHairObject = Hair.disponible.ElementAt(randomHairIndex);
             Player.hair = randomHairObject.Value;
 
-            // randor hair color
+            // random hair color
             Player.hairColor = rnd.Next(0, 64);
             Player.hairHightLight = rnd.Next(0, 64);
+
+            // random eyesbrown 
+            Player.eyebrows = rnd.Next(1, 8);
 
             if (createNewPreviewPed)
             {
@@ -62,7 +65,8 @@ namespace player.Client
                 SetPedEyeColor(Player.temporalPedForConfig, Player.eyes);
                 SetClothes.SetHair(Player.temporalPedForConfig, Player.hair, 0);
                 SetPedHairColor(Player.temporalPedForConfig, Player.hairColor, Player.hairHightLight);
-                
+                SetPedHeadOverlayColor(Player.temporalPedForConfig, 2, 1, Player.hairColor, Player.hairColor);
+                SetPedHeadOverlay(Player.temporalPedForConfig, 2, Player.eyebrows, 255);
             }
 
             string jsonString = "{\"showIn\": true }";
@@ -75,18 +79,10 @@ namespace player.Client
             Player.playerNuiOpened = true;
         }
 
-        async public void ConfigPlayer()
+        public void ConfigPlayer()
         {
-            int entity = PlayerPedId();
-            SetEntityVisible(entity, false, false);
+            SetEntityVisible(PlayerPedId(), false, false);
             ConfigNui(true);
-
-            while (true)
-            {
-                await Delay(0);
-                SetEntityLocallyVisible(entity);
-            }
-
         }
 
     }

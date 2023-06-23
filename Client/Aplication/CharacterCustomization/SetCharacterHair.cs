@@ -73,6 +73,7 @@ namespace player.Client
             int hair = Int32.Parse(value.ToString());
             Player.hairColor = hair ;
             SetPedHairColor(Player.temporalPedForConfig, Player.hairColor, Player.hairHightLight);
+            SetPedHeadOverlayColor(Player.temporalPedForConfig, 2, 1, Player.hairColor, Player.hairColor);
             cb(new { data = "ok" });
         }
 

@@ -40,8 +40,11 @@ namespace player.Client
 
             Player.hairColor = rnd.Next(0, 64);
             Player.hairHightLight = rnd.Next(0, 64);
+            Player.eyebrows = rnd.Next(1, 8);
 
             SetPedHairColor(Player.temporalPedForConfig, Player.hairColor, Player.hairHightLight);
+            SetPedHeadOverlayColor(Player.temporalPedForConfig, 2, 1, Player.hairColor, Player.hairColor);
+            SetPedHeadOverlay(Player.temporalPedForConfig, 2, Player.eyebrows, 255);
 
             cb(new { data = "ok" });
         }

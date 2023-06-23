@@ -40,6 +40,7 @@ namespace player.Client
                     if (!Player.configured)
                     {
                         ConfigPlayer();
+                        //SetEntityVisible(PlayerPedId(), true, false);
                     }
 
                     break;
