@@ -24,14 +24,14 @@ namespace player.Client
             if (!data.TryGetValue("color", out color)) { return; }
 
             float currentColor = (float)Int32.Parse(color.ToString()) / 10.0f;
-
-            Debug.WriteLine(color.ToString());
-            Debug.WriteLine(currentColor.ToString());
             SetPlayerClothes.SetPlayerBlackPerMan(Player.temporalPedForConfig, currentColor);
 
             ChangeHeadCaracteristics.GenerateRandomFaceCharacteristics();
             ChangeHeadCaracteristics.UpdatePlayerFace(Player.temporalPedForConfig);
+            Random rnd = new Random();
+            Player.eyes = rnd.Next(0, 15);
             Player.blackRange = currentColor;
+            SetPedEyeColor(Player.temporalPedForConfig, Player.eyes);
 
             cb(new { data = "ok" });
         }

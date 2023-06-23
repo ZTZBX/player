@@ -15,6 +15,9 @@ namespace player.Client
 
             if (!Player.playerLoaded || Player.playerNuiOpened || !Player.playerStatsLoaded) { return; }
 
+            Random rnd = new Random();
+            Player.blackRange = (float)rnd.Next(1, 11) / 10.0f;
+            Player.eyes = rnd.Next(0, 15);
 
             if (createNewPreviewPed)
             {
@@ -42,10 +45,12 @@ namespace player.Client
                 Player.temporalPedForConfig = playerClone;
                 ChangeHeadCaracteristics.GenerateRandomFaceCharacteristics();
                 ChangeHeadCaracteristics.UpdatePlayerFace(Player.temporalPedForConfig);
+                SetPlayerClothes.SetPlayerBlackPerMan(Player.temporalPedForConfig, Player.blackRange);
+                SetPedEyeColor(Player.temporalPedForConfig, Player.eyes);
             }
 
             string jsonString = "{\"showIn\": true }";
-            
+
 
             SendNuiMessage(jsonString);
             DisplayRadar(false);

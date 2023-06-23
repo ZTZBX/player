@@ -1,7 +1,122 @@
+function setCharacterSkinColor(data) {
+    DesactiveAllColorsPickedSkin();
+    var d = JSON.parse(data["data"]);
+
+    if (d.color == 0.1) {
+        $("#pikc1").addClass("active");
+    }
+
+    if (d.color == 0.2) {
+        $("#pikc2").addClass("active");
+    }
+
+    if (d.color == 0.3) {
+        $("#pikc3").addClass("active");
+    }
+    if (d.color == 0.4) {
+        $("#pikc4").addClass("active");
+    }
+    if (d.color == 0.5) {
+        $("#pikc5").addClass("active");
+    }
+    if (d.color == 0.6) {
+        $("#pikc6").addClass("active");
+    }
+    if (d.color == 0.7) {
+        $("#pikc7").addClass("active");
+    }
+    if (d.color == 0.8) {
+        $("#pikc8").addClass("active");
+    }
+    if (d.color == 0.9) {
+        $("#pikc9").addClass("active");
+    }
+    if (d.color == 1.0) {
+        $("#pikc10").addClass("active");
+    }
+}
+
+function setCharacterEyeColor(data) {
+    DesactiveAllColorsPickedEye();
+    var d = JSON.parse(data["data"]);
+
+    if (d.color == 0) {
+        $("#eyeblack").addClass("active");
+    }
+
+    if (d.color == 1) {
+        $("#eyeverylightbluegreen").addClass("active");
+    }
+
+    if (d.color == 2) {
+        $("#eyedarkblue").addClass("active");
+    }
+
+    if (d.color == 3) {
+        $("#eyebrown").addClass("active");
+    }
+
+    if (d.color == 4) {
+        $("#eyedarkerbrown").addClass("active");
+    }
+    if (d.color == 5) {
+        $("#eyeblue").addClass("active");
+    }
+    if (d.color == 6) {
+        $("#eyelightblue").addClass("active");
+    }
+    if (d.color == 7) {
+        $("#eyepink").addClass("active");
+    }
+
+    if (d.color == 8) {
+        $("#eyeyellow").addClass("active");
+    }
+    if (d.color == 9) {
+        $("#eyepurple").addClass("active");
+    }
+    if (d.color == 10) {
+        $("#eyedarkgreen").addClass("active");
+    }
+    if (d.color == 11) {
+        $("#eyelightbrown").addClass("active");
+    }
+    if (d.color == 12) {
+        $("#eyedark").addClass("actiçve");
+    }
+
+    if (d.color == 13) {
+        $("#eyegray").addClass("active");
+    }
+    if (d.color == 14) {
+        $("#eyefox").addClass("active");
+    }
+
+}
+
+
 $(function () {
     window.addEventListener('message', function (event) {
         var item = event.data;
         if (item.showIn == true) {
+
+            fetch(`https://player/get_player_skin_color`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8',
+                },
+                body: JSON.stringify({
+                })
+            }).then(resp => resp.json()).then(success => setCharacterSkinColor(success));
+
+            fetch(`https://player/get_player_eye_color`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8',
+                },
+                body: JSON.stringify({
+                })
+            }).then(resp => resp.json()).then(success => setCharacterEyeColor(success));
 
             fetch(`https://player/get_player_head_info`, {
                 method: 'POST',
@@ -11,6 +126,8 @@ $(function () {
                 body: JSON.stringify({
                 })
             }).then(resp => resp.json()).then(success => setCharacterHeadInfo(success));
+
+
 
             document.getElementsByClassName("main")[0].style.display = "block";
         }
@@ -101,6 +218,9 @@ function DesactiveAllColorsPickedEye() {
     $("#eyepurple").removeClass("active");
     $("#eyedarkgreen").removeClass("active");
     $("#eyelightbrown").removeClass("active");
+    $("#eyedark").removeClass("active");
+    $("#eyegray").removeClass("active");
+    $("#eyefox").removeClass("active");
 }
 
 
@@ -151,6 +271,15 @@ function ChangeColorSkin(color, clsass) {
         body: JSON.stringify({
         })
     }).then(resp => resp.json()).then(success => setCharacterHeadInfo(success));
+
+    fetch(`https://player/get_player_eye_color`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify({
+        })
+    }).then(resp => resp.json()).then(success => setCharacterEyeColor(success));
 
 }
 

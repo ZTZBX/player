@@ -25,8 +25,6 @@ namespace player.Client
 
             string currentGender = gender.ToString();
 
-            Debug.WriteLine(currentGender);
-
             if (currentGender == "F" || currentGender == "M")
             {
                 uint model;
@@ -68,10 +66,7 @@ namespace player.Client
                 FreezeEntityPosition(temporalPed, true);
                 SetEntityInvincible(temporalPed, true);
                 SetEntityHeading(temporalPed, 150.0f);
-
-                Player.temporalPedForConfig = temporalPed;
-
-                
+                Player.temporalPedForConfig = temporalPed; 
             }
 
             cb(new { data = "ok" });

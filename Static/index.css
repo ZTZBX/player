@@ -284,29 +284,41 @@ box-sha .color.active::before {
 }
 
 .lightbrown {
-    background-color: #aaaaaa
+    background-color: #f02cd3
 }
 
 .blue {
+    background-color:  #18110c
+} 
+
+.lightblue {
     background-color: rgb(255, 157, 0)
 }
 
-.lightblue {
-    background-color: #add8e6
-}
-
 .pink {
-    background-color: rgb(255, 255, 255)
+    background-color: rgb(214, 238, 245)
 }
 
 .yellow {
-    background-color: rgb(255, 0, 191)
+    background-color: rgb(195, 190, 190)
 }
 
 .purple {
-    background-color: rgb(255, 255, 0)
+    background-color: rgb(209, 17, 223)
 }
 
 .darkgreen {
-    background-color: #000000 
+    background-color: #e7da19 
+}
+
+.dark {
+    background-color: #0d0d0e;
+}
+
+.gray {
+    background-color: #7c7c7c;
+}
+
+.fox {
+    background-color: #d7a550;
 }
