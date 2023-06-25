@@ -139,6 +139,22 @@ namespace player.Client
             true);
         }
 
+        public static void SetPlayerBlackPerFem(int ped, float pers)
+        {
+            SetPedHeadBlendData(
+            ped,
+            45,
+            45,
+            23,
+            45,
+            45,
+            23,
+            pers,
+            0.5f,
+            pers,
+            true);
+        }
+
 
 
         async public void LoadDefaultSkin()
@@ -154,10 +170,16 @@ namespace player.Client
 
             ChangePlayerGender(PlayerId(), Player.gender);
             ChangePlayerAparience(PlayerPedId(), Clothes.Pants, Clothes.Torso, Clothes.Undershirt, Clothes.Shoes, 15);
+
             if (Player.gender == "M" || Player.gender == null)
             {
                 SetPlayerBlackPerMan(PlayerPedId(), Player.blackRange);
+            } 
+            else 
+            {
+                SetPlayerBlackPerFem(PlayerPedId(), Player.blackRange);
             }
+            
             SetPedEyeColor(PlayerPedId(), Player.eyes);
             Player.playerLoaded = true;
             SetClothes.SetHair(PlayerPedId(), Player.hair, 0);

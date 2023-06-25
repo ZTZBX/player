@@ -106,12 +106,49 @@ function setEyesBrows(data) {
     DesactiveAllEyeBrows();
     var d = JSON.parse(data["data"]);
     $("#" + d.eyesbrow + "EyesBrows").addClass("activehair");
+    $("#" + d.eyesbrow + "EyesBrowsF").addClass("activehair");
+}
+
+
+function setPlayerGender(gender)
+{
+    if (gender == "M")
+    {   
+        $("#HairMale").css("display", "block")
+        $("#HairFamale").css("display", "none")
+        $("#BrowsMale").css("display", "block")
+        $("#BrowsFamale").css("display", "none")
+        
+    }
+    else 
+    {
+        $("#HairFamale").css("display", "block")
+        $("#HairMale").css("display", "none")
+        $("#BrowsMale").css("display", "none")
+        $("#BrowsFamale").css("display", "block")
+    }
+}
+
+function setPlayerGenderApi(data) {
+    DesactiveAllEyeBrows();
+    var d = JSON.parse(data["data"]);
+    setPlayerGender(d.gender);
 }
 
 $(function () {
     window.addEventListener('message', function (event) {
         var item = event.data;
         if (item.showIn == true) {
+            
+            fetch(`https://player/get_player_gender`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8',
+                },
+                body: JSON.stringify({
+                })
+            }).then(resp => resp.json()).then(success => setPlayerGenderApi(success));
+
 
             fetch(`https://player/get_eyebrows`, {
                 method: 'POST',
@@ -200,6 +237,8 @@ $(function () {
             })
         }).then(resp => resp.json()).then(success => setCharacterHeadInfo(success));
 
+        setPlayerGender("M");
+
     });
 
     $('#genderselectorF').on('click', function () {
@@ -225,6 +264,8 @@ $(function () {
             body: JSON.stringify({
             })
         }).then(resp => resp.json()).then(success => setCharacterHeadInfo(success));
+
+        setPlayerGender("F");
     });
 
 
@@ -395,6 +436,7 @@ function UpdateCharacterHair(event, type) {
 function UpdateEyesBrows(event, type) {
     DesactiveAllEyeBrows();
     $("#" + type + "EyesBrows").addClass("activehair");
+    $("#" + type + "EyesBrowsF").addClass("activehair");
     fetch(`https://player/set_eyesbrows`, {
         method: 'POST',
         headers: {
@@ -500,6 +542,14 @@ function DesactiveAllHairs() {
     $("#Dreds").removeClass("activehair");
     $("#MaxPayne").removeClass("activehair");
     $("#Scruffy").removeClass("activehair");
+
+    $("#BoldF").removeClass("activehair");
+    $("#AdrienneFHair").removeClass("activehair");
+    $("#JanetsFHair").removeClass("activehair");
+    $("#EmilyFHair").removeClass("activehair");
+    $("#BrazilianFHair").removeClass("activehair");
+    $("#AliceFHair").removeClass("activehair");
+    $("#GlamFHair").removeClass("activehair");
 }
 
 function DesactiveAllEyeBrows() {
@@ -511,6 +561,15 @@ function DesactiveAllEyeBrows() {
     $("#5EyesBrows").removeClass("activehair");
     $("#6EyesBrows").removeClass("activehair");
     $("#7EyesBrows").removeClass("activehair");
+
+    $("#0EyesBrowsF").removeClass("activehair");
+    $("#1EyesBrowsF").removeClass("activehair");
+    $("#2EyesBrowsF").removeClass("activehair");
+    $("#3EyesBrowsF").removeClass("activehair");
+    $("#4EyesBrowsF").removeClass("activehair");
+    $("#5EyesBrowsF").removeClass("activehair");
+    $("#6EyesBrowsF").removeClass("activehair");
+    $("#7EyesBrowsF").removeClass("activehair");
 }
 
 

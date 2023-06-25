@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using CitizenFX.Core;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using static CitizenFX.Core.Native.API;
 
@@ -15,6 +16,23 @@ namespace player.Client
         {
             RegisterNuiCallbackType("change_character_gender");
             EventHandlers["__cfx_nui:change_character_gender"] += new Action<IDictionary<string, object>, CallbackDelegate>(ChangeCharacterGender);
+
+            RegisterNuiCallbackType("get_player_gender");
+            EventHandlers["__cfx_nui:get_player_gender"] += new Action<IDictionary<string, object>, CallbackDelegate>(GetPlayerGender);
+        }
+
+
+        private void GetPlayerGender(IDictionary<string, object> data, CallbackDelegate cb)
+        {
+            Dictionary<string, string> playerCharacterists = new Dictionary<string, string>();
+            if (Player.gender == null)
+            {
+                Player.gender = "M";
+            } 
+
+            playerCharacterists.Add("gender", Player.gender);
+
+            cb(new { data = JsonConvert.SerializeObject(playerCharacterists) });
         }
 
         private void ChangeCharacterGender(IDictionary<string, object> data, CallbackDelegate cb)
@@ -37,7 +55,9 @@ namespace player.Client
                 {
                     model = Clothes.modelFemale;
                     temporalPed = CreatePed(0, model, pedCoords.X, pedCoords.Y, pedCoords.Z, 150.0f, false, false);
-                    SetPlayerClothes.ChangePlayerAparience(temporalPed, 16, 16, 7, 220, 16);
+
+                    SetPlayerClothes.ChangePlayerAparience(temporalPed, 15, 15, 15, 218, 15);
+                    SetPlayerClothes.SetPlayerBlackPerFem(temporalPed, Player.blackRange);
                 }
                 else
                 {
@@ -51,8 +71,6 @@ namespace player.Client
                 ChangeHeadCaracteristics.UpdatePlayerFace(temporalPed);
                 SetPedEyeColor(temporalPed, Player.eyes);
                 SetClothes.SetHair(temporalPed, Player.hair, 0);
-                
-
             
                 Vector3 pedClone = GetEntityCoords(temporalPed, false);
 
@@ -68,6 +86,10 @@ namespace player.Client
                 SetEntityInvincible(temporalPed, true);
                 SetEntityHeading(temporalPed, 150.0f);
                 Player.temporalPedForConfig = temporalPed; 
+
+                SetPedHairColor(Player.temporalPedForConfig, Player.hairColor, Player.hairHightLight);
+                SetPedHeadOverlayColor(Player.temporalPedForConfig, 2, 1, Player.hairColor, Player.hairColor);
+                SetPedHeadOverlay(Player.temporalPedForConfig, 2, Player.eyebrows, 255);
 
 
             }

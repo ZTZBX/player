@@ -8,6 +8,8 @@ namespace player.Client
 {
     static public class Hair
     {
-        static public Dictionary<string, int> disponible = new Dictionary<string, int>();
+        static public Dictionary<string, int> male = new Dictionary<string, int>();
+
+        static public Dictionary<string, int> female = new Dictionary<string, int>();
     }
 }

@@ -24,8 +24,8 @@ namespace player.Client
             // random eyes
             Player.eyes = rnd.Next(0, 15);
             // random hair
-            int randomHairIndex = rnd.Next(Hair.disponible.Count);
-            KeyValuePair<string, int> randomHairObject = Hair.disponible.ElementAt(randomHairIndex);
+            int randomHairIndex = rnd.Next(Hair.male.Count);
+            KeyValuePair<string, int> randomHairObject = Hair.male.ElementAt(randomHairIndex);
             Player.hair = randomHairObject.Value;
 
             // random hair color

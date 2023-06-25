@@ -29,13 +29,22 @@ namespace player.Client
             EventHandlers["__cfx_nui:update_player_hightlight"] += new Action<IDictionary<string, object>, CallbackDelegate>(UpdatePlayerHightLight);
 
             // in this section will add the dispobile hears
-            Hair.disponible.Add("Bold.png", 0);
-            Hair.disponible.Add("Dreds.png", 16);
-            Hair.disponible.Add("Curly.png", 17);
-            Hair.disponible.Add("MaxPayne.png", 18);
-            Hair.disponible.Add("Afro.png", 19);
-            Hair.disponible.Add("BunHair.png", 20);
-            Hair.disponible.Add("Scruffy.png", 21);
+            Hair.male.Add("Bold.png", 0);
+            Hair.male.Add("Dreds.png", 16);
+            Hair.male.Add("Curly.png", 17);
+            Hair.male.Add("MaxPayne.png", 18);
+            Hair.male.Add("Afro.png", 19);
+            Hair.male.Add("BunHair.png", 20);
+            Hair.male.Add("Scruffy.png", 21);
+
+            // in this section will add the dispobile hears
+            Hair.female.Add("BoldF.png", 0);
+            Hair.female.Add("AdrienneFHair.png", 16);
+            Hair.female.Add("JanetsFHair.png", 17);
+            Hair.female.Add("EmilyFHair.png", 18);
+            Hair.female.Add("BrazilianFHair.png", 19);
+            Hair.female.Add("AliceFHair.png", 20);
+            Hair.female.Add("GlamFHair.png", 21);
 
         }
 
@@ -61,7 +70,14 @@ namespace player.Client
         private void GetHair(IDictionary<string, object> data, CallbackDelegate cb)
         {
             Dictionary<string, string> playerCharacterists = new Dictionary<string, string>();
-            playerCharacterists.Add("hair", Hair.disponible.FirstOrDefault(x => x.Value == Player.hair).Key);
+            if (Player.gender == "M" || Player.gender == null)
+            {
+                 playerCharacterists.Add("hair", Hair.male.FirstOrDefault(x => x.Value == Player.hair).Key);
+            }
+            else 
+            {
+                 playerCharacterists.Add("hair", Hair.female.FirstOrDefault(x => x.Value == Player.hair).Key);
+            }
             cb(new { data = JsonConvert.SerializeObject(playerCharacterists) });
         }
 
@@ -83,7 +99,15 @@ namespace player.Client
 
             if (!data.TryGetValue("value", out value)) { return; }
             string hair = value.ToString();
-            SetClothes.SetHair(Player.temporalPedForConfig, Hair.disponible[hair], 0);
+            if (Player.gender == "M" || Player.gender == null)
+            {
+                SetClothes.SetHair(Player.temporalPedForConfig, Hair.male[hair], 0);
+            }
+            else 
+            {
+                SetClothes.SetHair(Player.temporalPedForConfig, Hair.female[hair], 0);
+            }
+            
             cb(new { data = "ok" });
         }
 

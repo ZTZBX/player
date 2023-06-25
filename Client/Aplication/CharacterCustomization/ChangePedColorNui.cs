@@ -23,20 +23,39 @@ namespace player.Client
 
             if (!data.TryGetValue("color", out color)) { return; }
 
+
+            Random rnd = new Random();
+
             float currentColor = (float)Int32.Parse(color.ToString()) / 10.0f;
-            SetPlayerClothes.SetPlayerBlackPerMan(Player.temporalPedForConfig, currentColor);
+            if (Player.gender == "M" || Player.gender == null)
+            {
+                SetPlayerClothes.SetPlayerBlackPerMan(Player.temporalPedForConfig, currentColor);
+
+                int randomHairIndex = rnd.Next(Hair.male.Count);
+                KeyValuePair<string, int> randomHairObject = Hair.male.ElementAt(randomHairIndex);
+                Player.hair = randomHairObject.Value;
+                SetClothes.SetHair(Player.temporalPedForConfig, Player.hair, 0);
+
+            }
+            else
+            {
+                SetPlayerClothes.SetPlayerBlackPerFem(Player.temporalPedForConfig, currentColor);
+
+                int randomHairIndex = rnd.Next(Hair.female.Count);
+                KeyValuePair<string, int> randomHairObject = Hair.female.ElementAt(randomHairIndex);
+                Player.hair = randomHairObject.Value;
+                SetClothes.SetHair(Player.temporalPedForConfig, Player.hair, 0);
+            }
+
 
             ChangeHeadCaracteristics.GenerateRandomFaceCharacteristics();
             ChangeHeadCaracteristics.UpdatePlayerFace(Player.temporalPedForConfig);
-            Random rnd = new Random();
+
             Player.eyes = rnd.Next(0, 15);
             Player.blackRange = currentColor;
             SetPedEyeColor(Player.temporalPedForConfig, Player.eyes);
 
-            int randomHairIndex = rnd.Next(Hair.disponible.Count);
-            KeyValuePair<string, int> randomHairObject = Hair.disponible.ElementAt(randomHairIndex);
-            Player.hair = randomHairObject.Value;
-            SetClothes.SetHair(Player.temporalPedForConfig, Player.hair, 0);
+
 
             Player.hairColor = rnd.Next(0, 64);
             Player.hairHightLight = rnd.Next(0, 64);
