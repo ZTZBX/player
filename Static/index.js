@@ -455,6 +455,21 @@ function UpdateEyesBrows(event, type) {
         });
 }
 
+
+function UpdateBeard(event, type) {
+    fetch(`https://player/set_beard`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+        }, body: JSON.stringify({
+            value: type,
+        })
+    }).then()
+        .catch(err => {
+        });
+}
+
+
 function DesactiveAllHairColors() {
     $("#0ColorHair").removeClass("active");
     $("#1ColorHair").removeClass("active");
