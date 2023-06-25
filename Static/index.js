@@ -118,6 +118,9 @@ function setPlayerGender(gender)
         $("#HairFamale").css("display", "none")
         $("#BrowsMale").css("display", "block")
         $("#BrowsFamale").css("display", "none")
+
+        $("#BeardMaleMes").css("display", "block")
+        $("#BeardMale").css("display", "block")
         
     }
     else 
@@ -126,6 +129,9 @@ function setPlayerGender(gender)
         $("#HairMale").css("display", "none")
         $("#BrowsMale").css("display", "none")
         $("#BrowsFamale").css("display", "block")
+
+        $("#BeardMaleMes").css("display", "none")
+        $("#BeardMale").css("display", "none")
     }
 }
 

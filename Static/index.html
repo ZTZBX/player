@@ -22,11 +22,14 @@
             CREATE YOUR CHARACTER
         </h3>
 
-        <h5 style="text-align: left;">
-            SELECT YOUR GENDER
+        <h5 style="text-align: left;"> 
+            SELECT YOUR GENDER<br>
+            <small style="font-size: 12px;">
+                <strong style="color: red;">This option cannot be changed again after choosing carefully!!</strong><br>
+            </small>
         </h5>
 
-        <div style="margin-top: 1rem;">
+        <div style="margin-top: 0.5rem;">
             <svg xmlns="http://www.w3.org/2000/svg" height="50px" class="genderSelector activeGender"
                 id="genderselectorM" fill="currentColor" viewBox="0 0 320 512">
                 <path
@@ -40,8 +43,13 @@
             </svg>
         </div>
 
-        <h5 style="text-align: left;;margin-top: 2.5rem;">
-            SELECT YOUR SKIN COLOR
+        <h5 style="text-align: left;;margin-top: 2rem;">
+            SELECT YOUR SKIN COLOR<br>
+
+            <small style="font-size: 12px;">
+            If you select a skin tone it will generate a unique character configuration!
+            </small>
+
         </h5>
 
         <div id="cp-background-color" class="color-picker">
@@ -57,8 +65,12 @@
             <div onclick="ChangeColorSkin('10', 'pikc10')" id="pikc10" name="10" class="color skincolor10"></div>
         </div>
 
-        <h5 style="text-align: left;;margin-top: 2rem;">
-            CUSTOMIZE YOUR HEAD
+        <h5 style="text-align: left;;margin-top: 1rem;">
+            CUSTOMIZE YOUR HEAD<br>
+            <small style="font-size: 12px;">
+                Configure your character's face to your liking and don't forget to be unique!
+            </small>
+    
         </h5>
 
         <div style="height: 250px;overflow-y: scroll;">
@@ -297,12 +309,12 @@
                 style="margin-bottom: 5px;" width="100px" height="30px">
         </div>
 
-        <h5 style="text-align: left;margin-top: 2rem;">
+        <h5 style="text-align: left;margin-top: 2rem;display: none; " id="BeardMaleMes">
             CHOOSE YOUR HEAD BEARD<br>
             <small style="font-size: 12px;">If you don't like any option, don't hesitate to go through a
                 barbershop!</small>
         </h5>
-        <div style="padding: 10px;">
+        <div style="padding: 10px;display: none;" id="BeardMale"> 
             <img src="./NoBeard.png" class="hair" id="" height="80px" width="58px">
             <img src="./NoBeard.png" class="hair" id="" height="80px" width="58px">
             <img src="./NoBeard.png" class="hair" id="" height="80px" width="58px">
