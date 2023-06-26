@@ -38,7 +38,7 @@ namespace player.Client
                 Clothes.Pants = 15;
                 Clothes.Torso = 15;
                 Clothes.Undershirt = 15;
-                Clothes.Shoes = 218;
+                Clothes.Shoes = 219;
                 Clothes.UpperBody = 15;
 
                 SetPlayerClothes.ChangePlayerGender(PlayerId(), Player.gender);
@@ -48,6 +48,7 @@ namespace player.Client
             SetPlayerClothes.ChangePlayerAparience(PlayerPedId(), Clothes.Pants, Clothes.Torso, Clothes.Undershirt, Clothes.Shoes, Clothes.UpperBody);
             ChangeHeadCaracteristics.UpdatePlayerFace(PlayerPedId());
             SetPedHeadOverlayColor(PlayerPedId(), 2, 1, Player.hairColor, Player.hairColor);
+            SetPedHeadOverlay(PlayerPedId(), 2, Player.eyebrows, 255);
             SetPedEyeColor(PlayerPedId(), Player.eyes);
             SetClothes.SetHair(PlayerPedId(), Player.hair, 0);
             SetPedHairColor(PlayerPedId(), Player.hairColor, Player.hairHightLight);
