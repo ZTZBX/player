@@ -34,5 +34,23 @@ namespace player.Server
 
             return result;
         }
+
+        public void Insert(string token, int configured, int hoursplayed, string gender)
+        {
+            string usernameQuery = $"SELECT username from players where token='{token}'";
+            dynamic username = Exports["fivem-mysql"].raw(usernameQuery);
+
+            string query = $"select username from playerstats where username='{username[0][0]}';";
+            dynamic configResult = Exports["fivem-mysql"].raw(query);
+
+            if (configResult.Count > 0)
+            {
+                // update line
+                return;
+            }
+
+            string queryResult = $"INSERT INTO `playerstats` (`username`, `configured`, `hoursplayed`, `gender`) VALUES ('{username[0][0]}', '{configured}', '{hoursplayed}', '{gender}');";
+            Exports["fivem-mysql"].raw(queryResult);
+        }
     }
 }

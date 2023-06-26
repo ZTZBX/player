@@ -14,6 +14,7 @@ namespace player.Client
         static public int temporalPedForConfig = -1;
         static public bool playerLoaded = false;
         static public bool playerStatsLoaded = false;
+        static public bool playerFaceLoaded = false;
         static public bool playerNuiOpened = false;
 
         // configuration for player aspect
@@ -44,7 +45,7 @@ namespace player.Client
         static public int hairHightLight = 0;
 
         // OverLay
-        static public int facialHair = 0;
+        static public int facialHair = -1;
         static public int eyebrows = 0;
         static public int makeup = 0;
         static public int lipstick = 0;

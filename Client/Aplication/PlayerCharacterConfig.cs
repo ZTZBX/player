@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace player.Client
 {
-    public class PlayerConfig : BaseScript
+    public class PlayerCharacterConfig : BaseScript
     {
 
         static public void ConfigNui(bool createNewPreviewPed)

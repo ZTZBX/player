@@ -56,17 +56,31 @@ namespace player.Client
                     model = Clothes.modelFemale;
                     temporalPed = CreatePed(0, model, pedCoords.X, pedCoords.Y, pedCoords.Z, 150.0f, false, false);
 
-                    SetPlayerClothes.ChangePlayerAparience(temporalPed, 15, 15, 15, 218, 15);
+                    // setting default female dress 
+                    Clothes.Pants = 15;
+                    Clothes.Torso = 15;
+                    Clothes.Undershirt = 15;
+                    Clothes.Shoes = 218;
+                    Clothes.UpperBody = 15;
+                    
                     SetPlayerClothes.SetPlayerBlackPerFem(temporalPed, Player.blackRange);
                 }
                 else
                 {
                     model = Clothes.modelMale;
                     temporalPed = CreatePed(0, model, pedCoords.X, pedCoords.Y, pedCoords.Z, 150.0f, false, false);
-                    SetPlayerClothes.ChangePlayerAparience(temporalPed, 245, 15, 15, 218, 15);
+
+                    // setting default male dress 
+                    Clothes.Pants = 245;
+                    Clothes.Torso = 15;
+                    Clothes.Undershirt = 15;
+                    Clothes.Shoes = 218;
+                    Clothes.UpperBody = 15;
+
                     SetPlayerClothes.SetPlayerBlackPerMan(temporalPed, Player.blackRange);
                 }
 
+                SetPlayerClothes.ChangePlayerAparience(temporalPed, Clothes.Pants, Clothes.Torso, Clothes.Undershirt, Clothes.Shoes, Clothes.UpperBody);
                 ChangeHeadCaracteristics.GenerateRandomFaceCharacteristics();
                 ChangeHeadCaracteristics.UpdatePlayerFace(temporalPed);
                 SetPedEyeColor(temporalPed, Player.eyes);

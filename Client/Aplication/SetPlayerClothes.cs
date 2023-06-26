@@ -162,28 +162,15 @@ namespace player.Client
             while (true)
             {
                 await Delay(0);
-                if (Clothes.itemsLoaded)
+                if (Clothes.itemsLoaded && Player.playerStatsLoaded && Player.playerFaceLoaded)
                 {
                     break;
                 }
             }
 
-            ChangePlayerGender(PlayerId(), Player.gender);
-            ChangePlayerAparience(PlayerPedId(), Clothes.Pants, Clothes.Torso, Clothes.Undershirt, Clothes.Shoes, 15);
+            CharacterAparience.updatePlayerAparience();
 
-            if (Player.gender == "M" || Player.gender == null)
-            {
-                SetPlayerBlackPerMan(PlayerPedId(), Player.blackRange);
-            } 
-            else 
-            {
-                SetPlayerBlackPerFem(PlayerPedId(), Player.blackRange);
-            }
-            
-            SetPedEyeColor(PlayerPedId(), Player.eyes);
             Player.playerLoaded = true;
-            SetClothes.SetHair(PlayerPedId(), Player.hair, 0);
-
         }
 
     }

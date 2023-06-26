@@ -7,7 +7,7 @@ using static CitizenFX.Core.Native.API;
 
 namespace player.Client
 {
-    public class PlayerStats : PlayerConfig
+    public class PlayerStats : PlayerCharacterConfig
     {
         public PlayerStats()
         {
@@ -25,7 +25,16 @@ namespace player.Client
         {
             Player.configured = configured;
             Player.hoursplayed = hours;
-            Player.gender = gender;
+            
+            if (gender == null)
+            {
+                Player.gender = "M";
+            }
+            else
+            {
+                Player.gender = gender;
+            }
+
             Player.playerStatsLoaded = true;
         }
 
@@ -40,7 +49,6 @@ namespace player.Client
                     if (!Player.configured)
                     {
                         ConfigPlayer();
-                        //SetEntityVisible(PlayerPedId(), true, false);
                     }
 
                     break;

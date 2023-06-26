@@ -18,6 +18,7 @@ namespace player.Client
 
         
         static public int Torso = 15;
+        static public int UpperBody = 15;
         static public int Undershirt = 15;
         static public int Gloves = 0;
         static public int Pants = 245;
