@@ -46,10 +46,7 @@ namespace player.Client
         // OverLay
         static public int facialHair = 0;
         static public int eyebrows = 0;
-        static public int ageing = 0;
         static public int makeup = 0;
         static public int lipstick = 0;
-        static public int chesthairlevel = 0;
-        static public int moles = 0;
     }
 }

@@ -154,7 +154,7 @@ $(function () {
     window.addEventListener('message', function (event) {
         var item = event.data;
         if (item.showIn == true) {
-            
+
 
             fetch(`https://player/get_player_gender`, {
                 method: 'POST',
@@ -266,6 +266,19 @@ $(function () {
 
     });
 
+    $('#SaveCharacter').on('click', function () {
+        fetch(`https://player/save_your_character`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+            }, body: JSON.stringify({
+            })
+        }).then()
+            .catch(err => {
+        });
+
+    });
+
     $('#genderselectorF').on('click', function () {
 
         $('#genderselectorF').css("color", "rgba(255, 0, 0, 1)");
@@ -281,6 +294,7 @@ $(function () {
         }).then()
             .catch(err => {
             });
+
         fetch(`https://player/get_player_head_info`, {
             method: 'POST',
             headers: {

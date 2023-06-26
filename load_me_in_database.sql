@@ -8,18 +8,37 @@ CREATE TABLE IF NOT EXISTS playerstats (
 )ENGINE=InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS playerface (
+CREATE TABLE IF NOT EXISTS playeraspect (
     username varchar(50) NOT NULL,
-    facecomponent int not null,
-    componentvariation int not null,
-    FOREIGN KEY (username) REFERENCES players(username)
-)ENGINE=InnoDB;
-
-
-CREATE TABLE IF NOT EXISTS playerbody (
-    username varchar(50) NOT NULL,
-    skincolor int not null,
-    bodytype int not null,
+    blackrange FLOAT NOT NULL,
+    nosewidththinwide FLOAT NOT NULL,
+    nosepeakupdown FLOAT NOT NULL,
+    noselengthlongshort FLOAT NOT NULL,
+    newosebonecurvenesscrookedcurved FLOAT NOT NULL,
+    nosetipupdown FLOAT NOT NULL,
+    nosebonetwistleftright FLOAT NOT NULL,
+    eyebrowupdown FLOAT NOT NULL,
+    eyebrowinout FLOAT NOT NULL,
+    cheekbonesupdown FLOAT NOT NULL,
+    cheeksidewaysboneaizeinout FLOAT NOT NULL,
+    cheekboneswidthpuffedgaunt FLOAT NOT NULL,
+    eyeopeningbothwidesquinted FLOAT NOT NULL,
+    lipthicknessbothfatthin FLOAT NOT NULL,
+    jawbonewidthnarrowWide FLOAT NOT NULL,
+    jawboneshaperoundsquare FLOAT NOT NULL,
+    chinboneupdown FLOAT NOT NULL,
+    chinbonelengthinout FLOAT NOT NULL,
+    chinboneshapepointedsquare FLOAT NOT NULL,
+    chinholechinbum FLOAT NOT NULL,
+    neckthicknessthinthick FLOAT NOT NULL,
+    eyes FLOAT NOT NULL,
+    hair FLOAT NOT NULL,
+    haircolor FLOAT NOT NULL,
+    hairhightlight FLOAT NOT NULL,
+    facialhair FLOAT NOT NULL,
+    eyebrows FLOAT NOT NULL,
+    makeup FLOAT NOT NULL,
+    lipstick FLOAT NOT NULL,
     FOREIGN KEY (username) REFERENCES players(username),
     PRIMARY KEY(username)
 )ENGINE=InnoDB;
@@ -44,6 +63,6 @@ CREATE TABLE IF NOT EXISTS itemsoncharters (
     UNIQUE KEY `unique_player_item_on_player_body` (`idbodypart`, `name`)
 )ENGINE=InnoDB;
 
--- INSERTS 
 
+-- INSERTS 
 INSERT INTO `itemscharternametoid` (`id`, `name`) VALUES ('6', 'Shoes');
