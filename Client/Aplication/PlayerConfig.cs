@@ -35,6 +35,9 @@ namespace player.Client
             // random eyesbrown 
             Player.eyebrows = rnd.Next(1, 8);
 
+            // random Facial hair
+            Player.facialHair = rnd.Next(-1, 7);
+
             if (createNewPreviewPed)
             {
                 Vector3 pedCoords = GetEntityCoords(PlayerPedId(), false);
@@ -51,7 +54,6 @@ namespace player.Client
 
                 SetEntityHeading(playerClone, 150.0f);
 
-
                 Vector3 pedClone = GetEntityCoords(playerClone, false);
 
                 int cam_zoom = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", pedClone.X - 0.3f, pedClone.Y - 1.0f, pedClone.Z + 0.5f, 0, 0, 0, GetGameplayCamFov(), true, 0);
@@ -67,6 +69,8 @@ namespace player.Client
                 SetPedHairColor(Player.temporalPedForConfig, Player.hairColor, Player.hairHightLight);
                 SetPedHeadOverlayColor(Player.temporalPedForConfig, 2, 1, Player.hairColor, Player.hairColor);
                 SetPedHeadOverlay(Player.temporalPedForConfig, 2, Player.eyebrows, 255);
+                SetPedHeadOverlayColor(Player.temporalPedForConfig, 1, 1, Player.hairColor, Player.hairColor);
+                SetPedHeadOverlay(Player.temporalPedForConfig, 1, Player.facialHair, 255);
             }
 
             string jsonString = "{\"showIn\": true }";
@@ -75,7 +79,6 @@ namespace player.Client
             SendNuiMessage(jsonString);
             DisplayRadar(false);
             SetNuiFocus(true, true);
-
             Player.playerNuiOpened = true;
         }
 

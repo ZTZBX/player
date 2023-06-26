@@ -15,6 +15,9 @@ namespace player.Client
             RegisterNuiCallbackType("set_beard");
             EventHandlers["__cfx_nui:set_beard"] += new Action<IDictionary<string, object>, CallbackDelegate>(SetBeardNui);
 
+            RegisterNuiCallbackType("get_beard");
+            EventHandlers["__cfx_nui:get_beard"] += new Action<IDictionary<string, object>, CallbackDelegate>(GetBeardNui);
+
         }
 
         private void SetBeardNui(IDictionary<string, object> data, CallbackDelegate cb)
@@ -27,6 +30,13 @@ namespace player.Client
             SetPedHeadOverlayColor(Player.temporalPedForConfig, 1, 1, Player.hairColor, Player.hairColor);
             SetPedHeadOverlay(Player.temporalPedForConfig, 1, Player.facialHair, 255);
             cb(new { data = "ok" });
+        }
+
+        private void GetBeardNui(IDictionary<string, object> data, CallbackDelegate cb)
+        {
+            Dictionary<string, int> playerCharacterists = new Dictionary<string, int>();
+            playerCharacterists.Add("beard", Player.facialHair);
+            cb(new { data = JsonConvert.SerializeObject(playerCharacterists) });
         }
     }
 }

@@ -23,30 +23,32 @@ namespace player.Client
 
             if (!data.TryGetValue("color", out color)) { return; }
 
-
             Random rnd = new Random();
+
+            Player.hairColor = rnd.Next(0, 64);
+            Player.hairHightLight = rnd.Next(0, 64);
 
             float currentColor = (float)Int32.Parse(color.ToString()) / 10.0f;
             if (Player.gender == "M" || Player.gender == null)
             {
                 SetPlayerClothes.SetPlayerBlackPerMan(Player.temporalPedForConfig, currentColor);
-
                 int randomHairIndex = rnd.Next(Hair.male.Count);
                 KeyValuePair<string, int> randomHairObject = Hair.male.ElementAt(randomHairIndex);
                 Player.hair = randomHairObject.Value;
                 SetClothes.SetHair(Player.temporalPedForConfig, Player.hair, 0);
+                Player.facialHair = rnd.Next(-1, 7);
+                SetPedHeadOverlayColor(Player.temporalPedForConfig, 1, 1, Player.hairColor, Player.hairColor);
+                SetPedHeadOverlay(Player.temporalPedForConfig, 1, Player.facialHair, 255);
 
             }
             else
             {
                 SetPlayerClothes.SetPlayerBlackPerFem(Player.temporalPedForConfig, currentColor);
-
                 int randomHairIndex = rnd.Next(Hair.female.Count);
                 KeyValuePair<string, int> randomHairObject = Hair.female.ElementAt(randomHairIndex);
                 Player.hair = randomHairObject.Value;
                 SetClothes.SetHair(Player.temporalPedForConfig, Player.hair, 0);
             }
-
 
             ChangeHeadCaracteristics.GenerateRandomFaceCharacteristics();
             ChangeHeadCaracteristics.UpdatePlayerFace(Player.temporalPedForConfig);
@@ -54,11 +56,6 @@ namespace player.Client
             Player.eyes = rnd.Next(0, 15);
             Player.blackRange = currentColor;
             SetPedEyeColor(Player.temporalPedForConfig, Player.eyes);
-
-
-
-            Player.hairColor = rnd.Next(0, 64);
-            Player.hairHightLight = rnd.Next(0, 64);
             Player.eyebrows = rnd.Next(1, 8);
 
             SetPedHairColor(Player.temporalPedForConfig, Player.hairColor, Player.hairHightLight);

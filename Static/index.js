@@ -110,10 +110,20 @@ function setEyesBrows(data) {
 }
 
 
-function setPlayerGender(gender)
-{
-    if (gender == "M")
-    {   
+function setBeard(data) {
+    DesactiveAllBeard();
+    var d = JSON.parse(data["data"]);
+    if (d.beard == -1) {
+        $("#NoBeard").addClass("activehair");
+    } else {
+        $("#" + d.beard + "Beard").addClass("activehair");
+    }
+
+}
+
+
+function setPlayerGender(gender) {
+    if (gender == "M") {
         $("#HairMale").css("display", "block")
         $("#HairFamale").css("display", "none")
         $("#BrowsMale").css("display", "block")
@@ -121,10 +131,9 @@ function setPlayerGender(gender)
 
         $("#BeardMaleMes").css("display", "block")
         $("#BeardMale").css("display", "block")
-        
+
     }
-    else 
-    {
+    else {
         $("#HairFamale").css("display", "block")
         $("#HairMale").css("display", "none")
         $("#BrowsMale").css("display", "none")
@@ -146,6 +155,7 @@ $(function () {
         var item = event.data;
         if (item.showIn == true) {
             
+
             fetch(`https://player/get_player_gender`, {
                 method: 'POST',
                 headers: {
@@ -154,6 +164,15 @@ $(function () {
                 body: JSON.stringify({
                 })
             }).then(resp => resp.json()).then(success => setPlayerGenderApi(success));
+
+            fetch(`https://player/get_beard`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8',
+                },
+                body: JSON.stringify({
+                })
+            }).then(resp => resp.json()).then(success => setBeard(success));
 
 
             fetch(`https://player/get_eyebrows`, {
@@ -456,7 +475,27 @@ function UpdateEyesBrows(event, type) {
 }
 
 
+function DesactiveAllBeard() {
+    $("#NoBeard").removeClass("activehair");
+    $("#0Beard").removeClass("activehair");
+    $("#1Beard").removeClass("activehair");
+    $("#2Beard").removeClass("activehair");
+    $("#3Beard").removeClass("activehair");
+    $("#4Beard").removeClass("activehair");
+    $("#5Beard").removeClass("activehair");
+    $("#6Beard").removeClass("activehair");
+}
+
 function UpdateBeard(event, type) {
+    DesactiveAllBeard();
+
+    if (type == "-1") {
+        $("#NoBeard").addClass("activehair");
+    }
+    else {
+        $("#" + type + "Beard").addClass("activehair");
+    }
+
     fetch(`https://player/set_beard`, {
         method: 'POST',
         headers: {
@@ -592,6 +631,8 @@ function DesactiveAllEyeBrows() {
     $("#6EyesBrowsF").removeClass("activehair");
     $("#7EyesBrowsF").removeClass("activehair");
 }
+
+
 
 
 function UpdateCharacterFace(event, type) {

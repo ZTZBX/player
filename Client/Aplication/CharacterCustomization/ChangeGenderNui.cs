@@ -91,7 +91,6 @@ namespace player.Client
                 SetPedHeadOverlayColor(Player.temporalPedForConfig, 2, 1, Player.hairColor, Player.hairColor);
                 SetPedHeadOverlay(Player.temporalPedForConfig, 2, Player.eyebrows, 255);
 
-
             }
 
             cb(new { data = "ok" });
