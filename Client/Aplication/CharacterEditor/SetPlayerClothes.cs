@@ -74,11 +74,40 @@ namespace player.Client
 
                 Dictionary<string, string> r = JsonConvert.DeserializeObject<Dictionary<string, string>>(items);
 
-
+                // asingning the shoes
                 if (r["6"] != null)
                 {
                     Clothes.Shoes = Int32.Parse(r["6"]);
                 }
+                else
+                {
+                    if (Player.gender == "M")
+                    {
+                        Clothes.Shoes = 218;
+                    }
+                    else
+                    {
+                        Clothes.Shoes = 219;
+                    }
+                }
+
+                // asingning the shoes
+                if (r["4"] != null)
+                {
+                    Clothes.Pants = Int32.Parse(r["4"]);
+                }
+                else
+                {
+                    if (Player.gender == "M")
+                    {
+                        Clothes.Pants = 245;
+                    }
+                    else
+                    {
+                        Clothes.Pants = 15;
+                    }
+                }
+
 
                 Clothes.itemsLoaded = true;
             }
@@ -91,10 +120,14 @@ namespace player.Client
                 await Delay(100);
                 if (Exports["core-ztzbx"].playerToken() != null)
                 {
-                    TriggerServerEvent("playerClothesOnBody", Exports["core-ztzbx"].playerToken());
-                    TriggerServerEvent("updateClothesNamesToIdInClient", Exports["core-ztzbx"].playerToken());
-                    TriggerServerEvent("updateItemsMeta");
-                    break;
+                    if (Player.playerStatsLoaded && Player.playerFaceLoaded)
+                    {
+                        TriggerServerEvent("playerClothesOnBody", Exports["core-ztzbx"].playerToken());
+                        TriggerServerEvent("updateClothesNamesToIdInClient", Exports["core-ztzbx"].playerToken());
+                        TriggerServerEvent("updateItemsMeta");
+                        break;
+                    }
+
                 }
             }
         }
@@ -162,14 +195,17 @@ namespace player.Client
             while (true)
             {
                 await Delay(0);
-                if (Clothes.itemsLoaded && Player.playerStatsLoaded && Player.playerFaceLoaded)
+                if (Player.playerStatsLoaded && Player.playerFaceLoaded)
                 {
-                    break;
+                    if (Clothes.itemsLoaded)
+                    {
+                        break;
+                    }
+
                 }
             }
 
             CharacterAparience.updatePlayerAparience();
-
             Player.playerLoaded = true;
         }
 

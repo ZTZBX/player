@@ -66,3 +66,4 @@ CREATE TABLE IF NOT EXISTS itemsoncharters (
 
 -- INSERTS 
 INSERT INTO `itemscharternametoid` (`id`, `name`) VALUES ('6', 'Shoes');
+INSERT INTO `itemscharternametoid` (`id`, `name`) VALUES ('4', 'Pants');

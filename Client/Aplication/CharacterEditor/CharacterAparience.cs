@@ -20,10 +20,8 @@ namespace player.Client
             if (Player.gender == "M")
             {
                 // setting default male dress 
-                Clothes.Pants = 245;
                 Clothes.Torso = 15;
                 Clothes.Undershirt = 15;
-                Clothes.Shoes = 218;
                 Clothes.UpperBody = 15;
 
                 SetPlayerClothes.ChangePlayerGender(PlayerId(), Player.gender);
@@ -35,10 +33,8 @@ namespace player.Client
             if (Player.gender == "F")
             {
                 // setting default female dress 
-                Clothes.Pants = 15;
                 Clothes.Torso = 15;
                 Clothes.Undershirt = 15;
-                Clothes.Shoes = 219;
                 Clothes.UpperBody = 15;
 
                 SetPlayerClothes.ChangePlayerGender(PlayerId(), Player.gender);

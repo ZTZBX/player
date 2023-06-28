@@ -35,6 +35,12 @@ namespace player.Client
             {
                 Clothes.Shoes = Int32.Parse(Clothes.clothesNamesToIds[name]);
                 SetClothes.SetShoes(ped, Clothes.Shoes, 0);
+
+                // now update the real character
+                SetClothes.SetShoes(PlayerPedId(), Clothes.Shoes, 0);
+
+                // now lets add or replace the item on the character
+                
             }
 
         }
