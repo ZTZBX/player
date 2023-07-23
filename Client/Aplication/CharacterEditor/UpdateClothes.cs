@@ -11,7 +11,7 @@ namespace player.Client
     {
         public UpdateClothes()
         {
-            Exports.Add("updateShoes", new Action<string, int>(UpdateShoes));
+            Exports.Add("updateShoes", new Action<string, int, string>(UpdateShoes));
         }
 
         static public void UpdateBody()
@@ -29,7 +29,7 @@ namespace player.Client
 
         }
 
-        static public void UpdateShoes(string name, int ped)
+        static public void UpdateShoes(string name, int ped, string token)
         {
             if (Items.itemsTypes["clothing-shoes"].Contains(name))
             {
@@ -39,8 +39,9 @@ namespace player.Client
                 // now update the real character
                 SetClothes.SetShoes(PlayerPedId(), Clothes.Shoes, 0);
 
-                // now lets add or replace the item on the character
-                
+                // now lets add or replace the item on the character databaselevel
+
+                TriggerServerEvent("setPlayerShoes", token, name);
             }
 
         }

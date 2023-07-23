@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS itemsoncharters (
     FOREIGN KEY (`idbodypart`) REFERENCES itemscharternametoid(`id`),
     FOREIGN KEY (username) REFERENCES players(username),
     UNIQUE KEY `unique_player_item` (`username`,`name`),
-    UNIQUE KEY `unique_player_item_on_player_body` (`idbodypart`, `name`)
+    UNIQUE KEY `unique_player_item_on_player_body` (`idbodypart`, `name`, `username`)
 )ENGINE=InnoDB;
 
 

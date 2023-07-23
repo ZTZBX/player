@@ -28,5 +28,6 @@ ui_pages {
 
 client_exports {
     "updateShoes",
+    "getShoes"
 }
 

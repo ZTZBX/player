@@ -64,6 +64,15 @@ namespace player.Client
             while (true)
             {
                 await Delay(100);
+                try
+                {
+                    Exports["core-ztzbx"].playerToken();
+                }
+                catch
+                {
+                    continue;
+                }
+
                 if (Exports["core-ztzbx"].playerToken() != null && Player.playerFaceLoaded == false)
                 {
                     TriggerServerEvent("getPlayerFace", Exports["core-ztzbx"].playerToken());
