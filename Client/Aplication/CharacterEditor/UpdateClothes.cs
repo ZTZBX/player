@@ -34,15 +34,15 @@ namespace player.Client
             if (Items.itemsTypes["clothing-shoes"].Contains(name))
             {
                 Clothes.Shoes = Int32.Parse(Clothes.clothesNamesToIds[name]);
-                SetClothes.SetShoes(ped, Clothes.Shoes, 0);
-
-                // now update the real character
-                SetClothes.SetShoes(PlayerPedId(), Clothes.Shoes, 0);
-
-                // now lets add or replace the item on the character databaselevel
-
-                TriggerServerEvent("setPlayerShoes", token, name);
+            } else 
+            {
+                Clothes.Shoes = 218;
             }
+
+            SetClothes.SetShoes(ped, Clothes.Shoes, 0);
+            SetClothes.SetShoes(PlayerPedId(), Clothes.Shoes, 0);
+
+            TriggerServerEvent("setPlayerShoes", token, name);
 
         }
 

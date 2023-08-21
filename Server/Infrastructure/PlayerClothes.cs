@@ -24,11 +24,12 @@ namespace player.Server
             string queryItemsOnBody = $"select idbodypart, name from itemsoncharters where username='{username[0][0]}' and idbodypart='{bodyPart}'";
             dynamic resultQIOnP = Exports["fivem-mysql"].raw(queryItemsOnBody);
 
+
             if (resultQIOnP.Count > 0)
             {
                 if (item == null)
                 {
-                    query = $"DELETE FROM `itemsoncharters` WHERE `itemsoncharters`.`idbodypart` = '{bodyPart}'";
+                    query = $"DELETE FROM `itemsoncharters` WHERE `itemsoncharters`.`idbodypart` = '{bodyPart}' and username='{username[0][0]}'";
                     Exports["fivem-mysql"].raw(query);
                     return;
                 }

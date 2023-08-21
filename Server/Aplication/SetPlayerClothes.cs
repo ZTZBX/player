@@ -17,7 +17,14 @@ namespace player.Server
 
         private void SetPlayerShoes([FromSource] Player user, string token, string itemName)
         {
-            pC.SetPlayerClothes(user, token, "6", itemName);
+            if (itemName != "no-shoes")
+            {
+                pC.SetPlayerClothes(user, token, "6", itemName);
+                return;
+            }
+            
+
+            pC.SetPlayerClothes(user, token, "6", null);
         }
 
 
