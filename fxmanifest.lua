@@ -19,7 +19,8 @@ description 'ztzbx player system'
 dependencies {
     "core-ztzbx",
     "fivem-mysql",
-    "notification"
+    "notification",
+    "spawnmanager"
 }
 
 ui_pages {

@@ -28,10 +28,33 @@ namespace player.Client
             {
                 await Delay(0);
                 if (IsEntityDead(GetPlayerPed(PlayerId()))){
+                    
+                    Exports["spawnmanager"].setAutoSpawn(false);
+                    FreezeEntityPosition(GetPlayerPed(PlayerId()), true);
+
+                    // first
+                    Exports["notification"].send("Ai murit " + Exports["core-ztzbx"].playerUsername(), "Hospital", "Mai ai de asteptat 10 secunde...");
+                    await Delay(1000);
+                    await Delay(1000);
+                    Exports["notification"].send("Ai murit " + Exports["core-ztzbx"].playerUsername(), "Hospital", "Mai ai de asteptat 8 secunde...");
+                    await Delay(1000);
+                    await Delay(1000);
+                    Exports["notification"].send("Ai murit " + Exports["core-ztzbx"].playerUsername(), "Hospital", "Mai ai de asteptat 6 secunde...");
+                    await Delay(1000);
+                    await Delay(1000);
+                    Exports["notification"].send("Ai murit " + Exports["core-ztzbx"].playerUsername(), "Hospital", "Mai ai de asteptat 4 secunde...");
+                    await Delay(1000);
+                    await Delay(1000);
+                    Exports["notification"].send("Ai murit " + Exports["core-ztzbx"].playerUsername(), "Hospital", "Mai ai de asteptat 2 secunde...");
+                    await Delay(1000);
+                    await Delay(1000);
+
                     foreach (var i in PlayerDie.setEvent)
                     {
                         PlayerDie.setEvent[i.Key].DynamicInvoke();
                     }
+
+                    
                 }
             }
         }
