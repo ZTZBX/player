@@ -42,7 +42,7 @@ namespace player.Client
                             {"x", Player.defult_spawn_x},
                             {"y", Player.defult_spawn_y},
                             {"z", Player.defult_spawn_z},
-                            {"heading", 90.0f}
+                            {"heading", -90.0f}
                     });
                     Player.spawned = true;
                     break;
