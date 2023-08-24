@@ -22,11 +22,15 @@ namespace player.Client
             Die();
         }
 
-        async void Die()
+        async private void Die()
         {
             while (true)
             {
                 await Delay(0);
+
+                if (!Player.playerhaslogged)
+                { continue; } 
+                
                 if (IsEntityDead(GetPlayerPed(PlayerId()))){
                     
                     Exports["spawnmanager"].setAutoSpawn(false);

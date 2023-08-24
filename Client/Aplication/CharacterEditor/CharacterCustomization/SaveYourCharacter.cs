@@ -52,7 +52,7 @@ namespace player.Client
             playerCharacterists.Add("makeup", Player.makeup.ToString());
             playerCharacterists.Add("lipstick", Player.lipstick.ToString());
 
-            TriggerServerEvent("saveCharacter", Exports["core-ztzbx"].playerToken(), JsonConvert.SerializeObject(playerCharacterists));
+            TriggerServerEvent("saveCharacter", Player.currentToken, JsonConvert.SerializeObject(playerCharacterists));
 
             string jsonString = "{\"showIn\": false }";
             SendNuiMessage(jsonString);

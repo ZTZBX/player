@@ -10,8 +10,8 @@ namespace player.Client
         public ClientMain()
         {
             EventHandlers["onClientResourceStart"] += new Action<string>(OnClientResourceStart);
+            
         }
-
 
         private void OnClientResourceStart(string resourceName)
         {

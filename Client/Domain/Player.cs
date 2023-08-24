@@ -9,6 +9,11 @@ namespace player.Client
     static public class Player
     {
 
+        static public bool needToUpdatePlayerStatus = true;
+        static public bool playerhaslogged = false;
+
+        static public string currentToken;
+        
         static public float defult_spawn_x = 2538.877f;
         static public float defult_spawn_y = 942.8683f;
         static public float defult_spawn_z = 21.82614f;

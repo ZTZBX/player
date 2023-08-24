@@ -19,23 +19,47 @@ namespace player.Client
             PlayerDie.setEvent["goToHospital"] = new Action(GoToHospital);
             PlayerSpawned();
         }
+        
+        public static void FreezePlayer(int playerId, bool freeze)
+        {
+            var ped = GetPlayerPed(playerId);
+            
+            SetPlayerControl(playerId, !freeze, 0);
+
+            if (!freeze)
+            {
+                if (!IsEntityVisible(ped))
+                    SetEntityVisible(ped, true, false);
+                
+                if (!IsPedInAnyVehicle(ped, true))
+                    SetEntityCollision(ped, true, true);
+
+                FreezeEntityPosition(ped, false);
+                //SetCharNeverTargetted(ped, false)
+                SetPlayerInvincible(playerId, false);
+            } 
+            else 
+            {
+                if (IsEntityVisible(ped))
+                    SetEntityVisible(ped, false, false);
+
+                SetEntityCollision(ped, false, true);
+                FreezeEntityPosition(ped, true);
+                //SetCharNeverTargetted(ped, true)
+                SetPlayerInvincible(playerId, true);
+                
+                if (IsPedFatallyInjured(ped))
+                    ClearPedTasksImmediately(ped);
+            }
+        }
 
         async public void PlayerSpawned()
         {
             while (true)
             {
-                await Delay(100);
+                await Delay(0);
 
-                try
-                {
-                    Exports["core-ztzbx"].playerToken();
-                }
-                catch
-                {
-                    continue;
-                }
-
-                if (!Player.spawned && Exports["core-ztzbx"].playerToken() != null)
+                if (!Player.spawned && Player.playerhaslogged)
                 {
                     Exports["spawnmanager"].spawnPlayer(new Dictionary<string, dynamic>
                     {
@@ -45,13 +69,12 @@ namespace player.Client
                             {"heading", -90.0f}
                     });
                     Player.spawned = true;
+                    FreezePlayer(PlayerId(), false);
+
                     break;
                 }
             }
-
-            Exports["notification"].send("Bine ai venit!", "ZTZBX",  Exports["core-ztzbx"].playerUsername()+" bine ai venit in Liberty City, speram sa ai o experienta unica!");
-
-
+            Exports["notification"].send("Bine ai venit!", "ZTZBX", Exports["core-ztzbx"].playerUsername() + " bine ai venit in Liberty City, speram sa ai o experienta unica!");
         }
 
         async public void GoToHospital()
@@ -60,7 +83,7 @@ namespace player.Client
             {
                 await Delay(0);
 
-                
+
                 if (Player.playerStatsLoaded && Player.playerFaceLoaded)
                 {
                     if (Clothes.itemsLoaded)

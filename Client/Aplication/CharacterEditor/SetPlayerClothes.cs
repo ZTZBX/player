@@ -117,23 +117,14 @@ namespace player.Client
         {
             while (true)
             {
-                await Delay(100);
+                await Delay(0);
 
-                try
-                {
-                    Exports["core-ztzbx"].playerToken();
-                }
-                catch
-                {
-                    continue;
-                }
-
-                if (Exports["core-ztzbx"].playerToken() != null)
+                if (Player.playerhaslogged)
                 {
                     if (Player.playerStatsLoaded && Player.playerFaceLoaded)
                     {
-                        TriggerServerEvent("playerClothesOnBody", Exports["core-ztzbx"].playerToken());
-                        TriggerServerEvent("updateClothesNamesToIdInClient", Exports["core-ztzbx"].playerToken());
+                        TriggerServerEvent("playerClothesOnBody", Player.currentToken);
+                        TriggerServerEvent("updateClothesNamesToIdInClient", Player.currentToken);
                         TriggerServerEvent("updateItemsMeta");
                         break;
                     }

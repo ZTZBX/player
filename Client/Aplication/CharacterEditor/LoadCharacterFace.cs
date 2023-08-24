@@ -63,19 +63,11 @@ namespace player.Client
         {
             while (true)
             {
-                await Delay(100);
-                try
-                {
-                    Exports["core-ztzbx"].playerToken();
-                }
-                catch
-                {
-                    continue;
-                }
+                await Delay(0);
 
-                if (Exports["core-ztzbx"].playerToken() != null && Player.playerFaceLoaded == false)
+                if (Player.playerhaslogged && Player.playerFaceLoaded == false)
                 {
-                    TriggerServerEvent("getPlayerFace", Exports["core-ztzbx"].playerToken());
+                    TriggerServerEvent("getPlayerFace", Player.currentToken);
                     break;
                 }
             }

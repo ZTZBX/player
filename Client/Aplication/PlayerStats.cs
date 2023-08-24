@@ -36,6 +36,7 @@ namespace player.Client
             }
 
             Player.playerStatsLoaded = true;
+            Player.needToUpdatePlayerStatus = true;
         }
 
 
@@ -60,21 +61,15 @@ namespace player.Client
         {
             while (true)
             {
-                await Delay(100);
-                try
-                {
-                    Exports["core-ztzbx"].playerToken();
-                }
-                catch
-                {
-                    continue;
-                }
+                await Delay(0);
 
-                if (Exports["core-ztzbx"].playerToken() != null)
+                if (Player.playerhaslogged)
                 {
-                    TriggerServerEvent("getPlayerStatsInfo", Exports["core-ztzbx"].playerToken());
+                    TriggerServerEvent("getPlayerStatsInfo", Player.currentToken);
                     break;
                 }
+
+                
             }
         }
 
